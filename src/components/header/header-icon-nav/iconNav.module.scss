@@ -1,0 +1,51 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+.foot_header__actions {
+	
+}
+
+.foot_header__list {
+	display: flex;
+	align-items: center;
+	padding-top: rem(5);
+		gap: clamp(rem(5), 1.6vw, rem(20));
+		@media (max-width: em(767.98)){
+			gap: clamp(rem(15), 4.7vw, rem(60));
+}
+}
+
+.foot_header__link {
+	position: relative;
+		& span::before {
+			top: rem(-4);
+			right: rem(-4);
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: rem(9);
+			content: '2';
+			width: rem(16);
+			height: rem(16);
+			background: #000;
+			color: #FFFFFF;
+			border-radius: 50%;
+
+		}
+	}

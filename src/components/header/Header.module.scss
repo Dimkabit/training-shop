@@ -1,0 +1,158 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+.header {
+	background: #121212;
+	width: 100%;
+}
+
+
+.header_top {
+	color: #FFFFFF;
+	padding: rem(8) 0px;
+	&__container {
+		max-width: 90em;
+		padding: 0 rem(15);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+	
+}
+.top_header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: rem(6) rem(15);
+
+	// .top-header__block
+	&__block {
+		display: flex;
+		align-items: center;
+		gap: clamp(rem(10), 2.35vw, rem(30))
+		
+	}
+
+	// .top-header__phone
+	&__phone {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		font-size: rem(11);
+		opacity: 0.8;
+		span {
+			padding-top: rem(10);
+		}
+		img {
+			padding-right: rem(8);
+		}
+	}
+
+	// .top-header__adress
+	&__adress {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: normal;
+		font-size: rem(11);
+		line-height: em(13, 11);
+		letter-spacing: 0.03em;
+		opacity: 0.8;
+		
+		@media (max-width:em(767.98)){
+			 display: none; 
+		}
+	}
+
+	// .top-header__clock
+	&__clock {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		padding-left: clamp(rem(10), 1.8vw, rem(23));
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: normal;
+		font-size: rem(11);
+		line-height: em(13, 11);
+		letter-spacing: 0.03em;
+		opacity: 0.8;
+		@media (max-width: 576px){
+			 display: none; 
+		}
+	}
+
+	
+}
+
+
+//====================================================================================================
+.header_footer {
+	padding: rem(15) 0px rem(17) 0px;
+	background-color: #fff;
+	border-bottom: rem(2) solid #F8F8F8;
+	
+	// .header-footer__container
+	&__container {
+		max-width: 90em;
+		padding: 0 rem(10);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.foot_header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	// .foot-header__logo
+	&__logo {
+		font-family:' Playfair Display SC';
+		font-style: normal;
+		font-weight: normal;
+		font-size: rem(24);
+		line-height: em(32, 24);
+
+	}
+
+	// .foot-header__menu
+	&__menu {
+	}
+
+	// .foot-header__actions
+	&__actions {
+		
+		
+	}
+
+	// .foot-header__list
+	&__list {
+		display: flex;
+		gap: clamp(rem(5), 1.6vw, rem(20));
+		@media (max-width: em(767.98)){
+			gap: clamp(rem(15), 4.7vw, rem(60));
+		}
+	}
+
+}
+
