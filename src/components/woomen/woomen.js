@@ -10,6 +10,7 @@ import Image6 from "../header/assets/woomens/6.jpg"
 import Image7 from "../header/assets/woomens/7.jpg"
 import Image8 from "../header/assets/woomens/8.jpg"
 
+
 const Woomen = () => {
 	return (
 			<section className={styles.woomens}>
