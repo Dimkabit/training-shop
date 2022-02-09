@@ -31,15 +31,15 @@ const MainBlock = () => {
 				</div>
 				<div className={styles.page_block_right}>
 					<div className={styles.right_block}>
-						<img src={block} alt="card" />
+						<img src={block} alt="block" />
 						<a href="woomen-product-page.html">Women</a>
 					</div>
 					<div className={styles.right_block}>
-						<img src={block1} alt="card" />
+						<img src={block1} alt="block1" />
 						<a href="men-product-page.html">men</a>
 					</div>
 					<div className={styles.right_block}>
-						<img src={block2} alt="card" />
+						<img src={block2} alt="block2" />
 						<a href="/">Accessories</a>
 					</div>
 				</div>

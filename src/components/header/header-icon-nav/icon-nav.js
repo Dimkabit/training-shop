@@ -9,10 +9,10 @@ const IconNav = () => {
 	return (
 		<div className={styles.foot_header__actions}>
 			<ul className={styles.foot_header__list}>
-				<li className={styles.foot_header__link}><a href="/"><img src={search} alt="icon: search" /></a></li>
-				<li className={styles.foot_header__link}><a href="/"><img src={globe} alt="icon: globe" /></a></li>
-				<li className={styles.foot_header__link}><a href="/"><img src={user} alt="icon: user" /></a></li>
-				<li className={styles.foot_header__link}><a href="/"><img src={shopping} alt="icon: sopping-bag" /></a><span></span></li>
+				<li className={styles.foot_header__link}><a href="/"><img src={search} alt="icon:search" /></a></li>
+				<li className={styles.foot_header__link}><a href="/"><img src={globe} alt="icon:globe" /></a></li>
+				<li className={styles.foot_header__link}><a href="/"><img src={user} alt="icon:user" /></a></li>
+				<li className={styles.foot_header__link}><a href="/"><img src={shopping} alt="icon:sopping-bag" /></a><span></span></li>
 			</ul>
 		</div>
 	)
