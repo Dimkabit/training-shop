@@ -18,7 +18,7 @@ const Header = () => {
 							<a href="tel:+375291002030"><span>+375 29 100 20 30</span></a>
 						</div>
 						<div className={styles.top_header__adress}>
-							<img src={location} alt="icon: location" />
+							<img src={location} alt="location" />
 							<a href="/">Belarus, Gomel, Lange 17</a>
 						</div>
 						<div className={styles.top_header__clock}>

@@ -1,0 +1,88 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+//============================================
+
+.advantege {
+	padding: rem(30) 0px rem(33) 0px;
+	border-bottom: 2px solid #F8F8F8;
+
+	// .advantege__container
+	&__container {
+		max-width: 90em;
+		padding: 0 rem(10);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.advantege_block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@media(max-width: 992px) {
+		display: block;
+	}
+
+	// .advantege-block__body
+	&__body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@media(max-width: 992px) {
+			&:not(:last-child) {
+				padding-bottom: rem(30);
+			}
+		}
+	}
+
+	// .advantege-block__icon
+	&__icon {
+		padding-right: rem(8);
+	}
+
+	// .advantege-block__info
+	&__info {
+		color: #121212;
+	}
+
+	// .advantege-block__title
+	&__title {
+		font-family: 'Spartan';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 13px;
+		display: flex;
+		align-items: center;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #121212;
+	}
+
+	// .advantege-block__text
+	&__text {
+		font-family: 'Spartan';
+		font-style: normal;
+		font-weight: 500;
+		font-size: rem(12);
+		line-height: 22px;
+		color: #121212;
+		opacity: 0.9;
+	}
+}
