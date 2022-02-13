@@ -6,6 +6,8 @@ import menu from "./assets/icons/menu.svg";
 import share from "./assets/icons/share.svg";
 import tt from "./assets/icons/tt.svg";
 import view from "./assets/icons/view.svg";
+import { Link } from "react-router-dom";
+
 
 
 const WoomenProductsPage = () => {
@@ -15,9 +17,9 @@ const WoomenProductsPage = () => {
 					<div className={styles.woomens_product__container}>
 						<div className={styles.woomens_product__header}>
 							<div className={styles.woomens_product__pages}>
-								<a href="home.html" className={styles.woomens_product__page}>Home</a>
+								<Link to='/' className={styles.woomens_product__page}>Home</Link>
 								<img src={tt} alt="icon" />
-								<a href="woomen-product-page.html" className={styles.woomens_product__page_active}>Woomen</a>
+								<Link to={'/WoomenProductsPage'} className={styles.woomens_product__page_active}>Woomen</Link>
 							</div>
 							<div className={styles.woomens_product__share}>
 								<img src={share} alt="share" />

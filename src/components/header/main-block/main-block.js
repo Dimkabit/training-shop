@@ -5,6 +5,7 @@ import block from "../assets/icons/main/block.png";
 import block1 from "../assets/icons/main/block1.png";
 import block2 from "../assets/icons/main/block2.png";
 import leftArrow from "../assets/icons/left.svg";
+import { Link } from "react-router-dom";
 
 const MainBlock = () => {
 	return (
@@ -32,15 +33,15 @@ const MainBlock = () => {
 				<div className={styles.page_block_right}>
 					<div className={styles.right_block}>
 						<img src={block} alt="block" />
-						<a href="woomen-product-page.html">Women</a>
+						<Link to={'/WoomenProductsPage'}>Women</Link>
 					</div>
 					<div className={styles.right_block}>
 						<img src={block1} alt="block1" />
-						<a href="men-product-page.html">men</a>
+						<Link to={'/MenProductsPage'}>men</Link>
 					</div>
 					<div className={styles.right_block}>
 						<img src={block2} alt="block2" />
-						<a href="/">Accessories</a>
+						<Link to="/">Accessories</Link>
 					</div>
 				</div>
 				</div>
