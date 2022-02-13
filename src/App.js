@@ -1,20 +1,25 @@
 
 import styles from'./wrapper.module.scss';
 import Header from './components/header';
-import MainBlock from './components/header/main-block/main-block';
-import Advantage from './components/advantage/advantage';
-import Woomen from './components/woomen/woomen';
-import Men from './components/men/men';
+import Footer from './components/footer/footer';
+import MainPage from './pages/main-page/main-page';
+import MenProductsPage from './pages/products-page/men-products-page';
+import WoomenProductsPage from './pages/products-page/woomen-products-page';
+import { Route, Routes } from 'react-router-dom';
+
 
 
 function App() {
   return (
-    <div className={styles.wrapper}>
+    <div data-test-id='app' className={styles.wrapper}>
       <Header />
-      <MainBlock />
-      <Advantage />
-      <Woomen />
-      <Men />
+      	<Routes>
+          <Route index element = {<MainPage />} />
+          <Route path='/' element = {<MainPage />} />
+          <Route path='/WoomenProductsPage' element={<WoomenProductsPage />} />
+         <Route path='/MenProductsPage' element={<MenProductsPage />} />
+		   </Routes>
+      <Footer />
     </div>
   );
 }

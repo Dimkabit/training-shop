@@ -1,21 +1,19 @@
 import React from "react";
 import styles from "./woomen.module.scss";
-import Filter from "../filter/filterWomen";
-import Image1 from "../header/assets/woomens/1.jpg"
-import Image2 from "../header/assets/woomens/2.jpg"
-import Image3 from "../header/assets/woomens/3.jpg"
-import Image4 from "../header/assets/woomens/4.jpg"
-import Image5 from "../header/assets/woomens/5.jpg"
-import Image6 from "../header/assets/woomens/6.jpg"
-import Image7 from "../header/assets/woomens/7.jpg"
-import Image8 from "../header/assets/woomens/8.jpg"
+import Image1 from "./assets/1.jpg"
+import Image2 from "./assets/2.jpg"
+import Image3 from "./assets/3.jpg"
+import Image4 from "./assets/4.jpg"
+import Image5 from "./assets/5.jpg"
+import Image6 from "./assets/6.jpg"
+import Image7 from "./assets/7.jpg"
+import Image8 from "./assets/8.jpg"
 
 
 const Woomen = () => {
 	return (
 			<section className={styles.woomens}>
 				<div className={styles.woomens__container}>
-					<Filter />
 					<div className={styles.catalog__card}>
 						<article className={styles.product_card}>
 							<div className={styles.product_card__sale}>-50%</div>

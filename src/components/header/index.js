@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 import styles from './Header.module.scss';
 import phone from './assets/icons/phone.svg';
 import location from './assets/icons/location-marker.svg';
@@ -6,10 +6,12 @@ import clock from './assets/icons/clock.svg';
 import Social from './social-network/social';
 import Menu from './menu/menu';
 import IconNav from './header-icon-nav/icon-nav';
+import { Link } from "react-router-dom";
 
 const Header = () => {
+
 	return (
-		<header className={styles.header}>
+		<header className={styles.header} data-test-id='header'>
 			<div className={styles.header_top}>
 				<div className={styles.header_top__container}>
 					<div className={styles.top_header__block}>
@@ -32,7 +34,7 @@ const Header = () => {
 			<div className={styles.header_footer}>
 				<div className={styles.header_footer__container}>
 					<div className={styles.foot_header__logo}>
-						<a href="/">CleverShop</a>
+						<Link to="/" className={styles.foot_header__logo} data-test-id='header-logo-link'>CleverShop</Link>
 					</div>
 					<Menu />
 					<IconNav />

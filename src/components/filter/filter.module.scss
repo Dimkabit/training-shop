@@ -16,6 +16,14 @@
 	@return $result;
 }
 
+.filters {
+	&__container {
+		max-width: 90em;
+		padding: rem(20) rem(15);
+		margin: 0 auto;
+	}
+}
+
 .filter {
 	
 	// .filter__title

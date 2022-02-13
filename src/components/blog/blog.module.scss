@@ -1,0 +1,140 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+//======================================
+.blog {
+	padding-top: clamp(rem(30), 5.5vw, rem(100));
+	margin-bottom: rem(162);
+}
+.blog_body {
+	
+		// .blog-body__container
+		&__container {
+			max-width: 90em;
+			padding: 0 rem(10);
+			margin: 0 auto;
+		}
+}
+.body_blog {
+
+		// .body-blog__header
+
+		&__header {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: rem(5);
+			row-gap: rem(10);
+			padding-bottom: clamp(rem(30), 2.5vw, rem(48));
+	
+		}
+
+		// .body-blog__title
+
+		&__title {
+			font-family: 'Spartan';
+			font-weight: 600;
+			font-size: 22px;
+			line-height: 25px;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: #121212;
+			white-space: nowrap;
+		}
+
+		&__link {
+			font-family: 'Spartan';
+			font-size: 12px;
+			line-height: 13px;
+			letter-spacing: 0.06em;
+			color: #121212;
+			opacity: 0.6;
+		}
+
+		// .body-blog__content
+
+		&__content {
+			//
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: rem(10);
+			@media(max-width: 1100px) {
+				align-items: center;
+				justify-content: center;
+			}
+		}
+}
+.content_blog {
+	
+
+		// .content-blog__body
+
+		&__body {
+			max-width: 350px;
+			display: flex;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+			@media(max-width:1100px) {
+				&:not(:last-child) {
+					margin-bottom: rem(90);
+				}
+			}
+		}
+
+		// .content-blog__latest
+
+		&__latest {
+			max-width: 315px;
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			padding: rem(24) rem(16);
+			background: #fff;
+			bottom: rem(-150);
+			margin: 0 auto;
+
+		}
+
+		// .content-blog__title-latest
+
+		&__title_latest {
+			font-family: 'Spartan';
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 22px;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: #121212;
+			padding-bottom: rem(8);
+		}
+
+		// .content-blog__text
+
+		&__text {
+			font-family: 'Spartan';
+			font-size: 14px;
+			line-height: 22px;
+			color: #121212;
+			opacity: 0.8;
+			padding-bottom: rem(58);
+		}
+}
+
