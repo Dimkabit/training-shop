@@ -1,31 +1,41 @@
 import React from "react";
 import styles from "./productsPage.module.scss";
-import Men from "../../components/men/men";
+import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
+import {Woomen} from "../../components/woomen/woomen";
+import { CardsWoomen } from "../../components/cards-item/cards-woomen";
+
 import adjst from "./assets/icons/adjustments.svg";
 import menu from "./assets/icons/menu.svg";
 import share from "./assets/icons/share.svg";
 import tt from "./assets/icons/tt.svg";
 import view from "./assets/icons/view.svg";
+import { productType } from "../../constants/PROD_TYPE";
 import { Link } from "react-router-dom";
+import { filterButtons } from "../../constants/FILTER_BUT";
 
+const MenProductsPage = (page) => {
 
-const MenProductsPage = () => {
+	const typePage = page.page;
+	const typePageUpper = typePage.toUpperCase();
+	const productType  = typePage.toLowerCase();
+	console.log(typePage);
+	console.log(typePageUpper);
+	console.log(productType);
+
 	return (
-		<section className={styles.woomen} data-test-id={'products-page-men'}>
+		<section className={styles.woomen} data-test-id={`products-page-${productType}`}>
 			<div className={styles.woomen_product}>
 				<div className={styles.woomens_product__container}>
 					<div className={styles.woomens_product__header}>
 						<div className={styles.woomens_product__pages}>
-							<Link to='/' className={styles.woomens_product__page}>Home</Link>
-							<img src={tt} alt="icon" />
-							<Link to={'/MenProductsPage'} className={styles.woomens_product__page_active}>Men</Link>
+							<MenuTypePage page={typePage} />
 						</div>
 						<div className={styles.woomens_product__share}>
 							<img src={share} alt="share" />
 							<a href="/">Share</a>
 						</div>
 					</div>
-					<div className={styles.woomen_page__title}>men</div>
+					<div className={styles.woomen_page__title}>{typePageUpper}</div>
 				</div>
 			</div>
 			<div className={styles.woomen__container}>
@@ -48,10 +58,19 @@ const MenProductsPage = () => {
 						</select>
 					</div>
 				</div>
-				<Men />
+				<div className={styles.woomen}>
+				<div className={styles.woomens__container}>
+
+					<div className={styles.catalog__card}>		
+						<CardsWoomen productType={productType} />
+						<button className={styles.woomens_all}>See All</button>
+					</div>
+				</div>
+				</div>
+				
 			</div>
 		</section>
 	)
 };
 
-export default MenProductsPage;
+export { MenProductsPage };

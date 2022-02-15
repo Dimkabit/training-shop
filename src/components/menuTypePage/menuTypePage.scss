@@ -1,0 +1,13 @@
+
+
+.products-page-nav_page {
+	font-family: 'Spartan';
+		font-size: 11px;
+		line-height: 18px;
+		color: #121212;
+		opacity: 0.5;
+		&.active {
+			opacity: 1;
+		}
+
+}
