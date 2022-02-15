@@ -1,17 +1,12 @@
 import React from "react";
 import styles from "./productsPage.module.scss";
 import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
-import {Woomen} from "../../components/woomen/woomen";
 import { CardsWoomen } from "../../components/cards-item/cards-woomen";
-
 import adjst from "./assets/icons/adjustments.svg";
 import menu from "./assets/icons/menu.svg";
 import share from "./assets/icons/share.svg";
-import tt from "./assets/icons/tt.svg";
 import view from "./assets/icons/view.svg";
-import { productType } from "../../constants/PROD_TYPE";
-import { Link } from "react-router-dom";
-import { filterButtons } from "../../constants/FILTER_BUT";
+
 
 const MenProductsPage = (page) => {
 
