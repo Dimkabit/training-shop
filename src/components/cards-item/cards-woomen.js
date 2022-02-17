@@ -3,6 +3,7 @@ import styles from "./cards.module.scss";
 import { Link } from 'react-router-dom';
 import { CLOTHES } from "../../constants/CLOHTES";
 
+
 const CardsWoomen = (productType) => {
 	const typeProduct = Object.values(productType).join()
 	return (
@@ -11,6 +12,7 @@ const CardsWoomen = (productType) => {
                 
                 typeProduct === category ?
                 <article className={styles.product_card}>
+					 <div className={styles.product_card__sale}>-50%</div>
 						<Link to={`/${typeProduct}/${id}`} className={styles.product_card__image} data-test-id={`clothes-card-${typeProduct}`} key={`${category}${id}`}>
 						<span className={styles.product_card__item}><img src={img} alt="card" /></span>
 						</Link>

@@ -33,7 +33,7 @@ const MainBlock = () => {
 				<div className={styles.page_block_right}>
 					<div className={styles.right_block}>
 						<img src={block} alt="block" />
-						<Link to={'/woomen'}>women</Link>
+						<Link to={'/women'}>women</Link>
 					</div>
 					<div className={styles.right_block}>
 						<img src={block1} alt="block1" />
