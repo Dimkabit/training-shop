@@ -13,9 +13,9 @@ function App() {
     <div data-test-id='app' className={styles.wrapper}>
       <Header />
       <Routes>
-        <Route exact path='/' element={<MainPage />} />
-        <Route exact path='/women' element={<MenProductsPage page={'women'} />} />
-        <Route path='/men' element={<MenProductsPage page={"men"} />} exact />
+        <Route path='/' element={<MainPage />} exact/>
+        <Route path='/women' element={<MenProductsPage page={'Women'} />} exact/>
+        <Route path='/men' element={<MenProductsPage page={"Men"} />} exact />
         <Route path='/men/:id' element={<ProductPage page={"Men"} />} expect />
               <Route path='/women/:id' element={<ProductPage page={"Women"} />} expect />
       </Routes>

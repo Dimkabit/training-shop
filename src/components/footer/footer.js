@@ -1,4 +1,6 @@
 import React from "react";
+import { CATEGORI } from '../../constants/Categori';
+import { INFO } from "../../constants/INFO";
 import styles from "./footer.module.scss";
 import Facebook from "./assets/icons/facebook.svg";
 import Twitter from "./assets/icons/logo-twitter.svg";
@@ -47,21 +49,25 @@ const Footer = () => {
 							<div className={styles.footer__title}>Categories</div>
 							<nav className={styles.footer__body}>
 								<ul className={styles.footer__list}>
-									<li className={styles.footer__item}><Link to={'/MenProductsPage'} className={styles.footer__link} data-test-id={'footer-nav-link-men'}>Men</Link></li>
-									<li className={styles.footer__item}><Link to={'/WoomenProductsPage'} className={styles.footer__link} data-test-id={'footer-nav-link-woomen'}>Women</Link></li>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link} data-test-id={'footer-nav-link-accessories'}>Accessories</Link></li>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link} data-test-id={'footer-nav-link-beauty'}>Beauty</Link></li>
+								{CATEGORI.map(({id, path, name }) => (
+									<li className={styles.footer__item}>
+									<Link key={id} to={`/${path}`} className={styles.footer__link} data-test-id={`footer-nav-link-${path}`}>
+												{name}
+											</Link>
+									</li>
+								))}
 								</ul>
 							</nav>
 						</div>
 						<div className={styles.footer_filter__block}>
 							<div className={styles.footer__title}>Infomation</div>
 							<nav className={styles.footer__body}>
-								<ul className={styles.footer__list}>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link}>About Us</Link></li>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link}>Contact Us</Link></li>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link}>Blog</Link></li>
-									<li className={styles.footer__item}><Link to='/' className={styles.footer__link}>FAQs</Link></li>
+								<ul className={styles.footer__list}>	
+									{INFO.map(({ id, path, name }) => (
+										<li className={styles.footer__item}><Link key={id} to={`/${path}`} className={styles.footer__link} data-test-id={`footer-nav-link-${path}`}>
+												{name}
+											</Link></li>
+									))}
 								</ul>
 							</nav>
 						</div>

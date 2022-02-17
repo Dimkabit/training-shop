@@ -14,7 +14,7 @@ const Woomen = () => {
 	return (
 			<section className={styles.woomens}>
 				{productType.map(productType => (
-					<div className={styles.woomens__container}>
+					<div className={styles.woomens__container} data-test-id={`clothes-${productType}`} key={productType}>
 						<div className={styles.filter_body__filter}>
 						<div className={styles.filter__title}><Link to="/">{productType.toUpperCase()}{"'S"}</Link></div>
 							<nav className={styles.filter__body}>

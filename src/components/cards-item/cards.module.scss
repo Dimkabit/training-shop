@@ -1,3 +1,31 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+.foot_header__menu {
+	display: flex;
+	//padding-top: rem(5);
+	align-items: center;
+	@media (max-width:em(767.98)){
+		padding-top: 0; 
+		order: 1;
+  }
+}
+
 .product_card {
 	display: flex;
 	flex-direction: column;
