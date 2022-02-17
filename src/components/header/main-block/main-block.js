@@ -5,7 +5,6 @@ import block from "../assets/icons/main/block.png";
 import block1 from "../assets/icons/main/block1.png";
 import block2 from "../assets/icons/main/block2.png";
 import leftArrow from "../assets/icons/left.svg";
-import { Link } from "react-router-dom";
 
 const MainBlock = () => {
 	return (
