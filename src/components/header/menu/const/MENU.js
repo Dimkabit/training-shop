@@ -11,7 +11,7 @@ export const MENU = [
 	},
 	{
 		 id: 3, 
-		 path: 'wen', 
+		 path: 'men', 
 		 name: 'Men'
 	},
 	{
