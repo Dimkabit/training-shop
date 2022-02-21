@@ -1,44 +1,82 @@
 import React from "react";
-import styles from './mainBlock.module.scss';
+import  './mainBlock.scss';
 import slide1 from "../assets/icons/main/slid1.png";
 import block from "../assets/icons/main/block.png";
 import block1 from "../assets/icons/main/block1.png";
 import block2 from "../assets/icons/main/block2.png";
 import leftArrow from "../assets/icons/left.svg";
+//import classNames from 'classnames';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+
+// import required modules
+
 
 const MainBlock = () => {
 	return (
-		<main className={styles.page}>
-			<div className={styles.page__container}>
-				<div className={styles.page_block}>
-				<div className={styles.page_block__slider}>
-					<div className={styles.block__page_slider}>
-						<div className={styles.block__page_swiper}>
-							<div className={styles.block__page_slide}>
-								<article className={styles.slide_card}>
-									<img src={slide1} alt="slider"/>
-									<div className={styles.slide_card__bunner}>
-										<span>Banner</span>your Title text
-									</div>
-									<div className={styles.control_group__button}>
-										<button className={styles.control_slide__prev}><img src={leftArrow} alt="arrow" /></button>
-										<button className={styles.control_slide__next}><img src={leftArrow} alt="arrow" /></button>
-									</div>
-								</article>
+		<main className="page">
+			<div className="page__container">
+				<div className="page-block">
+					<div className="page-block__slider" data-test-id='main-slider'>
+						<div className="block-page__slider">
+							<div className="block-page__swiper">
+								<div className="block-page__slide">
+								<Swiper  spaceBetween={100} slidesPerView={1} navigation={{
+                   	     nextEl: '.control-slide__next', 
+                        prevEl: '.control-slide__prev',
+                  	  }}>
+								<SwiperSlide>
+									<article className="slide-card">
+										<div className="card-body">
+										<img src={slide1} alt="slider"/>
+										<div className="slid-card__bunner">
+											<span>Banner</span>your Title text
+										</div>
+										</div>
+									</article>
+								</SwiperSlide>
+								<SwiperSlide>
+									<article className="slide-card">
+										<div className="card-body">
+										<img src={slide1} alt="slider"/>
+										<div className="slid-card__bunner">
+											<span>Banner</span>your Title text
+										</div>
+										</div>
+									</article>
+								</SwiperSlide>
+								<SwiperSlide>
+									<article className="slide-card">
+										<div className="card-body">
+										<img src={slide1} alt="slider"/>
+										<div className="slid-card__bunner">
+											<span>Banner</span>your Title text
+										</div>
+										</div>
+									</article>
+								</SwiperSlide>
+								<div className="control-group__button">
+									<button className="control-slide__prev"><img src={leftArrow} alt="arrow" /></button>
+									<button className="control-slide__next"><img src={leftArrow} alt="arrow" /></button>
+								</div>
+								</Swiper>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className={styles.page_block_right}>
-					<div className={styles.right_block}>
+				<div className="page-block__right">
+					<div className="right__block">
 						<img src={block} alt="block" />
 						<span>women</span>
 					</div>
-					<div className={styles.right_block}>
+					<div className="right__block">
 						<img src={block1} alt="block1" />
 						<span>men</span>
 					</div>
-					<div className={styles.right_block}>
+					<div className="right__block">
 						<img src={block2} alt="block2" />
 						<span>Accessories</span>
 					</div>

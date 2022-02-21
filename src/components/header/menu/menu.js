@@ -1,19 +1,21 @@
-import { React } from "react";
-import styles from "./menu.module.scss";
+import { React, useState } from "react";
+import  "./menu.scss";
 import { MENU } from "./const/MENU";
 import { Link } from "react-router-dom";
 
 
-const Menu = () => {
 
+const Menu = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const toggle = () => setIsOpen(!isOpen);
 	return (
-		<div className={styles.foot_header__menu} data-test-id='menu'>
-			<button type="button" className={styles.icon_menu}><span></span></button>
-			<nav className={styles.menu__body}>
-				<ul className={styles.menu__list}>
-				<li className={styles.menu__item}>
+		<div className="foot-header__menu" data-test-id='burger-menu'>
+			<button type="button" className={`icon-menu ${isOpen ? '' : 'menu-open'}`} onClick={toggle} data-test-id='burger-menu-btn'><span></span></button>
+			<nav className={`menu__body ${isOpen ? '' : 'body-open'}`}>
+				<ul className="menu__list">
+				<li className="menu__item">
 					{MENU.map(({ id, path, name }) => (
-								<Link key={id} to={`/${path}`} className={styles.menu__link} data-test-id={`menu-link-${path}`}>
+								<Link key={id} to={`/${path}`} className="menu__link" onClick={toggle}  data-test-id={`menu-link-${path}`}>
 								{name}
 								</Link>
 							))}
