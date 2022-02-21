@@ -10,8 +10,8 @@ const Menu = () => {
 	const toggle = () => setIsOpen(!isOpen);
 	return (
 		<div className="foot-header__menu" data-test-id='burger-menu'>
-			<button type="button" className={`icon-menu ${isOpen ? '' : 'menu-open'}`} onClick={toggle} data-test-id='burger-menu-btn'><span></span></button>
-			<nav className={`menu__body ${isOpen ? '' : 'body-open'}`}>
+			<button type="button" className={`icon-menu ${isOpen ? 'menu-open' : ''}`} onClick={toggle} data-test-id='burger-menu-btn'><span></span></button>
+			<nav className={`menu__body ${isOpen ? 'body-open' : ''}`}>
 				<ul className="menu__list">
 				<li className="menu__item">
 					{MENU.map(({ id, path, name }) => (
