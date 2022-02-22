@@ -29,6 +29,8 @@ import Paypal from "./assets/icons/paypal.png";
 import Stars from "./assets/icons/stars.svg";
 import Anonation from "./assets/icons/annotation.png";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
 
 const ProductPage = (page) => {
 
@@ -211,42 +213,74 @@ const ProductPage = (page) => {
 							<div class="footer-slider__nav">
 								<div class="footer-slider__title">RELATED PRODUCTS</div>
 								<div class="footer-slider__group">
-									<button class="footer-slider__button-next"><img src={Arrow} alt="arrow" /></button>
-									<button class="footer-slider__button-prev"><img src={Arrow} alt="arrow" /></button>
+									<button class="footer-slider__button-next" ><img src={Arrow} alt="arrow" /></button>
+									<button class="footer-slider__button-prev" ><img src={Arrow} alt="arrow" /></button>
 								</div>
 							</div>
 							<div class="footer-slider__body">
-								<div class="product-footer__slider">
+								<div class="product-footer__slider" data-test-id='related-slider'>
 									<div class="product-footer__swiper">
 										<div class="product-footer__slide">
-										{SLIDEPROD.map(({id, name, price, img, category}) => (
-																				
-											<article className="product-card">
-											<div className="product-card__sale">-50%</div>
-												<Link to={`/${category}/${id}`} className="product-card__image" data-test-id={`clothes-card-${category}`} key={`${category}${id}`}>
-												<span className="product-card__item"><img src={img} alt="card" /></span>
-												</Link>
-												<div className="product-card__body">
-													<h4 className="product-card__title">
-														<a href="/" className="roduct-card__link">{name}</a>
-													</h4>
-													<div className="product-card__rating">
-														<div className="product-card__price">{price}</div>
-														<div className="rating__body">
-															<div className="rating__active"></div>
-															<div className="rating__items">
-																<input type="radio" className="rating__item" value="1" name="rating" />
-																<input type="radio" className="rating__item" value="2" name="rating" />
-																<input type="radio" className="rating__item" value="3" name="rating" />
-																<input type="radio" className="rating__item" value="4" name="rating" />
-																<input type="radio" className="rating__item" value="5" name="rating" />
+											<Swiper modules={[Navigation]} spaceBetween={110} slidesPerView={4}
+												   navigation={{
+													nextEl: '.footer-slider__button-next',
+													prevEl: '.footer-slider__button-prev',
+													}}
+													breakpoints= {{
+														320: {
+															slidesPerView: 1,
+															spaceBetween: 110,
+															autoHeight: true,
+														},
+														554: {
+															slidesPerView: 2,
+															spaceBetween: 20,
+														},
+														816: {
+															slidesPerView: 3,
+															spaceBetween: 70,
+														},
+														992: {
+															slidesPerView: 3,
+															spaceBetween: 70,
+														},
+														1268: {
+															slidesPerView: 4,
+															spaceBetween: 30,
+														},
+													}}
+											>
+											{SLIDEPROD.map(({id, name, price, img, category}) => (
+												<SwiperSlide>
+													<article className="product-cards">
+													<div className="product-card">
+														<div className="product-card__sale">-50%</div>
+															<Link to={`/${category}/${id}`} className="product-card__image" data-test-id={`clothes-card-${category}`} key={`${category}${id}`}>
+															<span className="product-card__item"><img src={img} alt="card"/></span>
+															</Link>
+															<div className="product-card__body">
+																<h4 className="product-card__title">
+																	<a href="/" className="roduct-card__link">{name}</a>
+																</h4>
+																<div className="product-card__rating">
+																	<div className="product-card__price">{price}</div>
+																	<div className="rating__body">
+																		<div className="rating__active"></div>
+																		<div className="rating__items">
+																			<input type="radio" className="rating__item" value="1" name="rating" />
+																			<input type="radio" className="rating__item" value="2" name="rating" />
+																			<input type="radio" className="rating__item" value="3" name="rating" />
+																			<input type="radio" className="rating__item" value="4" name="rating" />
+																			<input type="radio" className="rating__item" value="5" name="rating" />
+																		</div>
+																	</div>
+																</div>
 															</div>
 														</div>
-													</div>
-												</div>
-											</article>
-											
-										))}
+													</article>
+												</SwiperSlide>					
+												))}
+											</Swiper>
 										</div>
 									</div>
 								</div>

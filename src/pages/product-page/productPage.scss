@@ -732,8 +732,27 @@ opacity: 0.4;
 	padding-bottom: rem(96);
 }
 }
+.footer-slider__group {
+	display: flex;
+}
+.swiper-button-lock {
+	display: block;
+}
+.swiper-slide {
+	align-items: center;
+}
+.product-cards {
+	display: flex;
+	justify-content: center;
+}
+@media(max-width: 816px) {
+	.product-footer__slide {
+		padding-left: 5%;
+	}
+}
 //================================
 .product-card {
+	width: 255px;
 	display: flex;
 	flex-direction: column;
 	position: relative;

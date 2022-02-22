@@ -13,7 +13,7 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 
 // import required modules
-
+import { Navigation } from "swiper";
 
 const MainBlock = () => {
 	return (
@@ -24,7 +24,7 @@ const MainBlock = () => {
 						<div className="block-page__slider">
 							<div className="block-page__swiper">
 								<div className="block-page__slide">
-								<Swiper  spaceBetween={100} slidesPerView={1} navigation={{
+								<Swiper modules={[Navigation]}  spaceBetween={100} slidesPerView={1} navigation={{
                    	     nextEl: '.control-slide__next', 
                         prevEl: '.control-slide__prev',
                   	  }}>
