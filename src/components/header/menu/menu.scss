@@ -32,6 +32,7 @@
 
 	// .menu__body
 	&__body {
+		display: none;
 		@media(max-width:  em(767.98)) {
 			position: fixed;
 			width: 100%;
@@ -83,6 +84,7 @@
 	}
 }
 .body-open {
+	display: block;
 	left: 0%;
 	z-index: 2;
 	&::before {
@@ -127,20 +129,23 @@
 	}
 	
 }
-.menu-open {
-	position: fixed;
-	z-index: 26;
-	right: 0;
-	span {
-		width: 0;
-	}
-
-	&::before {
-		top: calc(50% - rem(1));
-		transform: rotate(-45deg);
-	}
-	&::after {
-		bottom: calc(50% - rem(1));
-		transform: rotate(45deg);
+@media (max-width: em(767.98)) {
+	.menu-open {
+		position: fixed;
+		z-index: 26;
+		margin-right: rem(11);
+		right: 0;
+		span {
+			width: 0;
+		}
+	
+		&::before {
+			top: calc(50% - rem(1));
+			transform: rotate(-45deg);
+		}
+		&::after {
+			bottom: calc(50% - rem(1));
+			transform: rotate(45deg);
+		}
 	}
 }
