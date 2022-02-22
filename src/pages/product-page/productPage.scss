@@ -716,13 +716,13 @@ opacity: 0.4;
 	// .footer-slider__button-next
 
 	&__button-next {
-		transform: rotate(90deg);
+		transform: rotate(-90deg);
 	}
 
 	// .footer-slider__button-prev
 
 	&__button-prev {
-		transform: rotate(-90deg);
+		transform: rotate(90deg);
 	}
 
 

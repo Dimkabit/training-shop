@@ -213,8 +213,8 @@ const ProductPage = (page) => {
 							<div class="footer-slider__nav">
 								<div class="footer-slider__title">RELATED PRODUCTS</div>
 								<div class="footer-slider__group">
-									<button class="footer-slider__button-next" ><img src={Arrow} alt="arrow" /></button>
 									<button class="footer-slider__button-prev" ><img src={Arrow} alt="arrow" /></button>
+									<button class="footer-slider__button-next" ><img src={Arrow} alt="arrow" /></button>
 								</div>
 							</div>
 							<div class="footer-slider__body">

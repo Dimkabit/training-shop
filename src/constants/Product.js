@@ -12,21 +12,35 @@ export const SLIDEPROD = [
 			img: Slide1
 		},
 		{
-			id: 1,
+			id: 2,
 			category: 'women',
 			name: "Women's tracksuit Q109",
 			price: '$ 30.00',
 			img: Slide2
 		},
 		{
-			id: 1,
+			id: 3,
 			category: 'women',
 			name: "Women's tracksuit Q109",
 			price: '$ 30.00',
 			img: Slide3
 		},
 		{
-			id: 1,
+			id: 4,
+			category: 'women',
+			name: "Women's tracksuit Q109",
+			price: '$ 30.00',
+			img: Slide4
+		},
+		{
+			id: 5,
+			category: 'women',
+			name: "Women's tracksuit Q109",
+			price: '$ 30.00',
+			img: Slide3
+		},
+		{
+			id: 6,
 			category: 'women',
 			name: "Women's tracksuit Q109",
 			price: '$ 30.00',
