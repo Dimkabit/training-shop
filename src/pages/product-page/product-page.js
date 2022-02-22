@@ -84,7 +84,7 @@ const ProductPage = (page) => {
 					<div class="product__container">
 						<div class="product__main main-product">
 							<div class="main-product__images images-product">
-								<div class="images-product__slider">
+								<div class="images-product__slider" data-test-id="product-slider">
 									<div class="images-product__swiper">
 										<div class="images-product__slide">
 											<img src={Slide1} alt="product" />
