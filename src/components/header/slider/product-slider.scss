@@ -1,0 +1,116 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+.product-slider {
+	width: 100%;
+	height: 600px;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-bottom: 15px;
+	@media(max-width: 992px) {
+		max-width: 60%;
+	}
+	@media(max-width: 850px) {
+		max-width: 544px;
+	}
+	@media(max-width: 760px) {
+		max-width: 72%;
+	}
+	@media(max-width: 450px) {
+		max-width: 100%;
+	}
+
+}
+
+.product-slider .swiper-wrapper {
+	width: 100%;
+	padding: 5px;
+}
+
+.product-slider .swiper-button-prev, .product-slider .swiper-button-next {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.product-slider .swiper-button-prev::after, .product-slider .swiper-button-next::after {
+	font-size: 15px;
+	color: #000;
+}
+
+.product-slider .product-slider-second .swiper-slide {
+	width: 100px;
+	height: 115px !important;
+}
+
+.product-slider .product-slider-second .swiper-wrapper {
+	height: 550px;
+}
+
+.button-slider {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.product-slider .swiper-slide.swiper-slide-visible {
+	opacity: 50%;
+}
+
+.product-slider .swiper-slide.swiper-slide-thumb-active {
+	opacity: 100%;
+}
+
+@media screen and (max-width: 580px) {
+	.product-slider .product-slider-first .swiper-slide > img {
+		 width: calc(215px + (448 - 215) * ((100vw - 320px) / (1200 - 320)));
+		 height: calc(300px + (560 - 300) * ((100vw - 320px) / (1200 - 320)));
+	}
+
+	.product-slider .product-slider-second .swiper-slide {
+		 width: calc(50px + (100 - 50) * ((100vw - 320px) / (1200 - 320)));
+		 height: calc(75px + (115 - 75) * ((100vw - 320px) / (1200 - 320))) !important;
+	}
+
+	.product-slider .product-slider-second .swiper-wrapper {
+		 height: calc(240px + (550 - 240) * ((100vw - 320px) / (1200 - 320)));
+	}
+
+	.product-slider .product-slider-second .swiper-slide img {
+		 width: calc(47px + (94 - 47) * ((100vw - 320px) / (1200 - 320)));
+		 height: calc(57px + (114 - 57) * ((100vw - 320px) / (1200 - 320)));
+	}
+
+	.product-slider {
+		 height: calc(300px + (600 - 300) * ((100vw - 320px) / (1200 - 320)));
+	}
+}
+
+.swiper-button-lock {
+	display: block;
+
+}
+.btn-slider-top {
+	transform: rotate(180deg);
+}
+.swiper-slide-prev {
+	margin-right: 0;
+}

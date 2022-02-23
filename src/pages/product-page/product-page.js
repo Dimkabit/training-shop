@@ -3,12 +3,10 @@ import "./productPage.scss";
 import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
 import { SLIDEPROD } from "../../constants/Product";
 import { Link } from "react-router-dom";
+import MainSlider from "../../components/header/slider/product-slider";
 
 import Share from "../products-page/assets/icons/share.svg";
 import Slide1 from "./assets/1.jpg";
-import Slide2 from "./assets/2.png";
-import Slide3 from "./assets/3.png";
-import Slide4 from "./assets/4.png";
 import Smoll1 from "./assets/5.png";
 import Smoll2 from "./assets/6.png";
 import Smoll3 from "./assets/7.png";
@@ -84,33 +82,7 @@ const ProductPage = (page) => {
 					<div class="product__container">
 						<div class="product__main main-product">
 							<div class="main-product__images images-product">
-								<div class="images-product__slider" data-test-id="product-slider">
-									<div class="images-product__swiper">
-										<div class="images-product__slide">
-											<img src={Slide1} alt="product" />
-										</div>
-									</div>
-								</div>
-								<div class="images-product__thumbs thumbs-images">
-									<div class="buttons__group">
-										<div class="buttonc-top"><img src={Arrow} alt="arrow"/></div>
-										<div class="buttonc"><img src={Arrow} alt="arrow"/></div>
-									</div>
-									<div class="thumbs-images__swiper ">
-										<div class="thumbs-images__slide swiper-slide-thumb-active">
-											<img src={Slide1} alt="product" width="94px" height="114px" />
-										</div>
-										<div class="thumbs-images__slide">
-											<img src={Slide2} alt="product" width="94px" height="114px" />
-										</div>
-										<div class="thumbs-images__slide">
-											<img src={Slide3} alt="product" width="94px" height="114px" />
-										</div>
-										<div class="thumbs-images__slide">
-											<img src={Slide4} alt="product" width="94px" height="114px" />
-										</div>
-									</div>
-								</div>
+								<MainSlider />
 							</div>
 							<div class="main-product__body body-product">
 								<div class="body-product__header header-product">
