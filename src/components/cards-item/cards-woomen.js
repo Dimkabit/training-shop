@@ -1,42 +1,41 @@
 import React from "react";
 import styles from "./cards.module.scss";
 import { Link } from 'react-router-dom';
-import { CLOTHES } from "../../constants/CLOHTES";
+import {StarRating} from "../rating/rating";
+import classNames from "classnames";
 
 
-const CardsWoomen = (productType) => {
-	const typeProduct = Object.values(productType).join()
+
+
+
+const CardsWoomen = (product) => {
+	const prodInfo = product.product;
+
+	
+
 	return (
 		<>
-            {CLOTHES.map(({id, name, price, img, category}) => (
+            
                 
-                typeProduct === category ?
-                <article className={styles.product_card}>
-					 <div className={styles.product_card__sale}>-50%</div>
-						<Link to={`/${typeProduct}/${id}`} className={styles.product_card__image} data-test-id={`clothes-card-${typeProduct}`} key={`${category}${id}`}>
-						<span className={styles.product_card__item}><img src={img} alt="card" /></span>
+               
+                <article className={styles.product_card} >
+					 {!prodInfo.discount ? '' : <div className={styles.product_card__sale}>{prodInfo.discount}</div>}
+						<Link to={`/${prodInfo.category}/${prodInfo.id}`} className={styles.product_card__image} data-test-id={`clothes-card-${prodInfo.typeProduct}`}>
+						<span className={styles.product_card__item}><img src={`https://training.cleverland.by/shop${prodInfo.images[0]?.url}`} alt="card" width="255"/></span>
 						</Link>
 						<div className={styles.product_card__body}>
 							<h4 className={styles.product_card__title}>
-								<a href="/" className={styles.roduct_card__link}>{name}</a>
+								<a href="/" className={styles.roduct_card__link}>{prodInfo.name}</a>
 							</h4>
 							<div className={styles.product_card__rating}>
-								<div className={styles.product_card__price}>{price}</div>
+								<div className={classNames('styles.product_card__price', {active: prodInfo.discount !== null})}>$ {prodInfo.price}</div>
 								<div className={styles.rating__body}>
-									<div className={styles.rating__active}></div>
-									<div className={styles.rating__items}>
-										<input type="radio" className={styles.rating__item} value="1" name="rating" />
-										<input type="radio" className={styles.rating__item} value="2" name="rating" />
-										<input type="radio" className={styles.rating__item} value="3" name="rating" />
-										<input type="radio" className={styles.rating__item} value="4" name="rating" />
-										<input type="radio" className={styles.rating__item} value="5" name="rating" />
-									</div>
+									<StarRating rating={prodInfo.rating}/>
 								</div>
 							</div>
 						</div>
 					</article>
-                : null
-            ))}
+
 		</>
 	)
 };

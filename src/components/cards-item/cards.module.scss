@@ -68,7 +68,7 @@
 		font-family: 'Spartan';
 		font-style: normal;
 		font-weight: normal;
-		font-size: 14px;
+		font-size: 13px;
 		line-height: 16px;
 		color: #121212;
 		opacity: 0.6;
@@ -106,15 +106,15 @@
 .rating__body {
 	position: relative;
 }
-.rating__body::before {
+/*.rating__body::before {
 	content: "★★★★★";
 	display: block;
-	color: #F0CC84;
+	color: #897857;
 	opacity: 0.6;
 	.active {
 		color: #ffd300;
 	}
-}
+}*/
 .rating__active {
 	position: absolute;
 	width: 0%;
@@ -151,6 +151,9 @@
 	line-height: 1;
 	padding: 0px 0px 0px 10px;
 }
+.cards_rating__item__nwMdr {
+	color: #ffd300;
+}
 
 //============
 	&__price {
@@ -162,4 +165,8 @@
 		color: #121212;
 	}
 	
+}
+
+.hidden {
+	display: none;
 }

@@ -13,7 +13,8 @@ const MainPage = () => {
 		<div>
 		<MainBlock />
 		<Advantage />
-		<Woomen />
+		<Woomen typeCategory={'women'}/>
+		<Woomen typeCategory={'men'}/>
 		<LookBook />
 		<Subscribe />
 		<Blog />
@@ -21,4 +22,4 @@ const MainPage = () => {
 	)
 };
 
-export {MainPage};
+export { MainPage };

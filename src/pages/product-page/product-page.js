@@ -1,15 +1,16 @@
-import React from "react";
+
+import React, {useState} from "react";
 import "./productPage.scss";
 import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
-import { SLIDEPROD } from "../../constants/Product";
-import { Link } from "react-router-dom";
-import MainSlider from "../../components/header/slider/product-slider";
+import {StarRating} from "../../components/rating/rating";
+import { useParams } from "react-router-dom";
+import { CardsWoomen } from "../../components/cards-item/cards-woomen";
+
+//import { Link } from "react-router-dom";
+import { MainSlider } from "../../components/header/slider/product-slider";
+import { PRODUCTS } from "../../constants/products";
 
 import Share from "../products-page/assets/icons/share.svg";
-import Slide1 from "./assets/1.jpg";
-import Smoll1 from "./assets/5.png";
-import Smoll2 from "./assets/6.png";
-import Smoll3 from "./assets/7.png";
 import Arrow from "./assets/icons/arrow.svg";
 import Heandle from "./assets/icons/hanger.svg";
 import Heart from "./assets/icons/heart.svg";
@@ -24,17 +25,59 @@ import American from "./assets/icons/american-express.png";
 import Discover from "./assets/icons/discover.png";
 import Mastercard from "./assets/icons/mastercard.png";
 import Paypal from "./assets/icons/paypal.png";
-import Stars from "./assets/icons/stars.svg";
 import Anonation from "./assets/icons/annotation.png";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 
 const ProductPage = (page) => {
-
 	const pages = page.page;
+
+	let idProduct = useParams();
+	let product = PRODUCTS[pages.toLowerCase()].find(prod => prod.id===idProduct.id);
+	let nameProduct = product.name;
+	let materialProduct = product.material;
+	let priceProduct = product.price;
+	let sizesProduct = product.sizes;
+	let reviewsProduct = product.reviews;
+	//let discountProduct = product.discount;
+	let ratingProduct = product.rating;
+
+
+	let colorProd = [];
+	product.images.forEach(color => {
+		 let res = colorProd.some(col => col === color.color);
+		 return res !== true ? colorProd.push(color.color) : null; 
+	})
+
+	let colorImgProd = [];
+	colorProd.forEach(color => {
+		 product.images.find(prodcol => prodcol.color === color ? colorImgProd.push([prodcol.url, prodcol.color]) : null)
+	})
+
+	const [colorImg, setColorImg] = useState(colorProd[0]);
+
+	const colorImgProduct = (e) => {  
+		 setColorImg(e.target.name);
+	}
+
+	const [useSize, setUseSize] = useState([]);
+
+	const selectedSize = (e) => {
+		 let arrSize = [...useSize];
+		 if(e.target.checked === true) {
+			  arrSize.push(e.target.value);
+		 } else {
+			  arrSize.forEach((size, i) => {
+					return size === e.target.value ? arrSize.splice(i, 1) : null;
+			  });
+		 }
+		 setUseSize(arrSize);
+	}
+
 	const productType = pages.toLowerCase();
-	const pageType = page.page + ` ► ${page.page}'s tracksuit Q109`;
+	const pageType = page.page + ` ► ${nameProduct}`;
+	
 	return (
 		<div className="productpage" data-test-id={`product-page-${productType}`}>
 			<div className="productpage__top">
@@ -48,22 +91,15 @@ const ProductPage = (page) => {
 						<a href="/">Share</a>
 					</div>
 				</div>
-				<div className="woomen-page__title">{`${page.page}'s tracksuit Q109`}</div>
+				<div className="woomen-page__title">{nameProduct}</div>
 				<div className="woomens-product__rating">
 						<div className="woomens-product__review">
 							<div className="rating rating_set">
 								<div className="rating__body">
-									<div className="rating__active"></div>
-									<div className="rating__items">
-										<input type="radio" className="rating__item" value="1" name="rating" />
-										<input type="radio" className="rating__item" value="2" name="rating" />
-										<input type="radio" className="rating__item" value="3" name="rating" />
-										<input type="radio" className="rating__item" value="4" name="rating" />
-										<input type="radio" className="rating__item" value="5" name="rating" />
-									</div>
+									<StarRating  rating={ratingProduct}/>
 								</div>
 							</div>
-							<span>2 Reviews</span>
+							<span>{reviewsProduct.length} 2 Reviews</span>
 						</div>
 						<div className="woomens-product__info">
 							<div className="info__sku">
@@ -78,67 +114,76 @@ const ProductPage = (page) => {
 				</div>
 			</div>
 			</div>
-			<div class="product">
-					<div class="product__container">
-						<div class="product__main main-product">
-							<div class="main-product__images images-product">
-								<MainSlider />
+			<div className="product">
+					<div className="product__container">
+						<div className="product__main main-product">
+							<div className="main-product__images images-product">
+								<MainSlider img={product.images}/>
 							</div>
-							<div class="main-product__body body-product">
-								<div class="body-product__header header-product">
-									<div class="header-product__line">
-										<div class="header-product__title-block">
-											<h5 class="header-product__title">Color:</h5>
-											<span class="header-product__subtitle">Blue</span>
+							<div className="main-product__body body-product">
+								<div className="body-product__header header-product">
+									<div className="header-product__line">
+										<div className="header-product__title-block">
+											<h5 className="header-product__title">Color:</h5>
+											<span className="header-product__subtitle">{colorImg}</span>
 										</div>
 									</div>
-									<div class="header-product__image">
-										<img class="header-product__active" src={Slide1} alt="" width="64" height="64"/>
-										<img src={Smoll1} alt="" width="64" height="64" />
-										<img src={Smoll2} alt="" width="64" height="64" />
-										<img src={Smoll3} alt="" width="64" height="64" />
+									<div className="header-product__image">
+									{
+                                colorImgProd.map((img, i) => (
+                                    <img className="header-product active" src={`https://training.cleverland.by/shop${img[0]}`} name={img[1]} onClick={colorImgProduct} alt='img' key={i}  width="64" height="64"/>
+                                ))
+                            }
+
 									</div>
-									<div class="header-product__sizes sizes-prod">
-										<div class="size-prod__size"><p>Size:</p> <span>S</span></div>
-										<div class="product-button-btn">
-											<button class="button-size">XS</button>
-											<button class="button-size active">S</button>
-											<button class="button-size">M</button>
-											<button class="button-size">L</button>
+									<div className="header-product__sizes sizes-prod">
+										<div className="size-prod__size">
+										<p>Size:</p> 
+											{useSize.map((size, i) => (
+											<span key={i} className="text">{size}</span>
+										))}
 										</div>
-										<div class="sizes-prod__guide">
+										<div className="product-button-btn">
+                            {sizesProduct.map((size, i) => (
+                                <div className="size-btn" key={i}>
+                                    <input type='checkbox' name={size} value={size} id={size} onChange={selectedSize} />
+                                    <label htmlFor={size}>{size}</label>
+                                </div>
+                            ))}
+										</div>
+										<div className="sizes-prod__guide">
 											<img src={Heandle} alt="heander" />
 											<span>Size guide</span>
 										</div>
 									</div>
 								</div>
 								<div class="product-information__price">
-									<span>$ 379.99</span>
+									<span>$ {priceProduct}</span>
 									<button>ADD TO CARD</button>
 									<img src={Heart} alt='img' />
 									<img src={Compare} alt='img' />
 								</div>
 								
-								<div class="product-information__services">
-									<div class="product-information__block">
+								<div className="product-information__services">
+									<div className="product-information__block">
 										 <img src={Track} alt='img' />
 										 <span>  Shipping & Delivery</span>
 									</div>
-									<div class="product-information__block">
+									<div className="product-information__block">
 										 <img src={Refresh} alt='img' />
 										 <span>  Returns & Exchanges</span>
 									</div>
-									<div class="product-information__block">
+									<div className="product-information__block">
 										 <img src={Mail} alt='img' />
 										 <span>  Ask a question</span>
 									</div>
 								</div>
-								<div class="product-information__check">
-									<p class="product-information__title">GUARANTEED SAFE CHECKOUT</p>
+								<div className="product-information__check">
+									<p className="product-information__title">GUARANTEED SAFE CHECKOUT</p>
 									<span></span>
 
 								</div>
-								<div class="product-information__pay">
+								<div className="product-information__pay">
 									<img src={Stripe} alt="stripe" />
 									<img src={AES} alt="aes" />
 									<img src={Paypal} alt="paypal" />
@@ -147,52 +192,51 @@ const ProductPage = (page) => {
 									<img src={Discover} alt="discaver" />
 									<img src={American} alt="american" />
 								</div>
-								<div class="product-information__description">
+								<div className="product-information__description">
 									<button>DESCRIPTION</button>
 								</div>
-								<div class="body-product__table">
-									<div class="table-product__title">ADDITIONAL INFORMATION</div>
-									<div class="table-product">
-										<div class="table-product__label">Color:</div>
-										<div class="table-product__value">Blue, White, Black, Grey</div>
-										<div class="table-product__label">Size:</div>
-										<div class="table-product__value">XS, S, M, L</div>
-										<div class="table-product__label">Material:</div>
-										<div class="table-product__value">100% Polyester</div>
+								<div className="body-product__table">
+									<div className="table-product__title">ADDITIONAL INFORMATION</div>
+									<div className="table-product">
+										<div className="table-product__label">Color:</div>
+										{colorProd.map(color =>(<div className="table-product__value" key={color}>{color}</div>))}
+										<div className="table-product__label">Size:</div>
+										{sizesProduct.map((size, i) => (<div className="table-product__value" key={i}>{size}L</div>))}
+										<div className="table-product__label">Material:</div>
+										<div className="table-product__value">{materialProduct}</div>
 									</div>
 								</div>
-								<div class="body-product__review rewiew-product">
-									<span class="rewiew-product__title">REVIEWS</span>
-									<div class="rewiew-product__ratings">
-										 <div class="rewiew-product__review"><img src={Stars} alt="stars" /><span>2 Reviews</span></div>
-										 <div class="rewiew-product__write"><img src={Anonation} alt="stars" /><span>Write a review</span></div>
+								<div className="body-product__review rewiew-product">
+									<span className="rewiew-product__title">REVIEWS</span>
+									<div className="rewiew-product__ratings">
+										 <StarRating rating={ratingProduct}/>
+										 <div className="rewiew-product__write"><img src={Anonation} alt="stars" /><span>Write a review</span></div>
 									</div>
-									<div class="rewiew-product__rating">
-										 <div><span class="text1">Oleh Chabanov</span></div>
-										 <div><span class="text">3 months ago </span><img src={Stars} alt="stars" /></div>
-									</div>
-									<div class="rewiew-product__rating-text">On the other hand, we denounce with righteous indignation and like men who are so beguiled and demoralized by the charms of pleasure of the moment</div>
-									<div class="rewiew-product__rating">
-										 <div><span class="text1">ShAmAn design</span></div>
-										 <div><span class="text">3 months ago </span><img src={Stars} alt="stars" /></div>
-									</div>
-									<div class="rewiew-product__rating-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</div>
+									{reviewsProduct.map(reviews => (
+										<>
+										<div className="rewiew-product__rating" key={reviews.id}>
+											<div><span className="text1">{reviews.name}</span></div>
+											<div><span className="text">3 months ago </span><StarRating /></div>
+										</div>
+										<div className="rewiew-product__rating-text">{reviews.text}</div>
+										</>
+									))}
 								</div>
 
 							</div>
 						</div>
-						<div class="product-footer footer-slider">
-							<div class="footer-slider__nav">
-								<div class="footer-slider__title">RELATED PRODUCTS</div>
-								<div class="footer-slider__group">
-									<button class="footer-slider__button-prev" ><img src={Arrow} alt="arrow" /></button>
-									<button class="footer-slider__button-next" ><img src={Arrow} alt="arrow" /></button>
+						<div className="product-footer footer-slider">
+							<div className="footer-slider__nav">
+								<div className="footer-slider__title">RELATED PRODUCTS</div>
+								<div className="footer-slider__group">
+									<button className="footer-slider__button-prev" ><img src={Arrow} alt="arrow" /></button>
+									<button className="footer-slider__button-next" ><img src={Arrow} alt="arrow" /></button>
 								</div>
 							</div>
-							<div class="footer-slider__body">
-								<div class="product-footer__slider" data-test-id='related-slider'>
-									<div class="product-footer__swiper">
-										<div class="product-footer__slide">
+							<div className="footer-slider__body">
+								<div className="product-footer__slider" data-test-id='related-slider'>
+									<div className="product-footer__swiper">
+										<div className="product-footer__slide">
 											<Swiper modules={[Navigation]} spaceBetween={110} slidesPerView={4}
 												   navigation={{
 													nextEl: '.footer-slider__button-next',
@@ -222,34 +266,9 @@ const ProductPage = (page) => {
 														},
 													}}
 											>
-											{SLIDEPROD.map(({id, name, price, img, category}) => (
-												<SwiperSlide>
-													<article className="product-cards">
-													<div className="product-card">
-														<div className="product-card__sale">-50%</div>
-															<Link to={`/${category}/${id}`} className="product-card__image" data-test-id={`clothes-card-${category}`} key={`${category}${id}`}>
-															<span className="product-card__item"><img src={img} alt="card"/></span>
-															</Link>
-															<div className="product-card__body">
-																<h4 className="product-card__title">
-																	<a href="/" className="roduct-card__link">{name}</a>
-																</h4>
-																<div className="product-card__rating">
-																	<div className="product-card__price">{price}</div>
-																	<div className="rating__body">
-																		<div className="rating__active"></div>
-																		<div className="rating__items">
-																			<input type="radio" className="rating__item" value="1" name="rating" />
-																			<input type="radio" className="rating__item" value="2" name="rating" />
-																			<input type="radio" className="rating__item" value="3" name="rating" />
-																			<input type="radio" className="rating__item" value="4" name="rating" />
-																			<input type="radio" className="rating__item" value="5" name="rating" />
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</article>
+											{PRODUCTS[pages.toLowerCase()].map(product => (
+												<SwiperSlide to={`/${product.category}/${product.id}`} key={`${product.category}${product.id}`}>
+													<CardsWoomen product={product} key={product.id}/>
 												</SwiperSlide>					
 												))}
 											</Swiper>

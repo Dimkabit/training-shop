@@ -1,0 +1,39 @@
+@use "sass:math";
+//====================================================================================================
+//Percent
+@function percent($px, $from) {
+	$result: calc($px / $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: calc($px / 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+.filter__link {
+	padding-left: rem(10);
+	font-family: 'Spartan';
+	font-style: normal;
+	font-weight: normal;
+	font-size: rem(12);
+	line-height: 13px;
+	letter-spacing: 0.06em;
+	color: #121212;
+	opacity: 0.6;
+
+	@media (any-hover: hover) {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.filter_link__active {
+	opacity: 1;
+}
