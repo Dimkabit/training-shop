@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./woomen.module.scss";
 import './woomen.scss';
 import { Link } from "react-router-dom";
@@ -17,8 +17,16 @@ const Woomen = (typeCategory) => {
 	
 	const changeMenuButtons = (e) => {
 		 setParticulars(e.target.value);
+		 isChecked();
 	}
-	
+	const isChecked = useCallback (() => {
+		const changeMenuButtons = document.getElementsByClassName("filter__link");
+		[...changeMenuButtons].forEach(btn => btn.children[0].checked ? btn.style.opacity = '100%' :  btn.style.opacity = '60%' );
+  }, [])
+
+  useEffect(() => {
+		isChecked()
+  }, [isChecked])
 	
 
 	return (
@@ -30,14 +38,16 @@ const Woomen = (typeCategory) => {
 							<nav className={styles.filter__body}>
 								<ul className={styles.filter__list}>
 									<li className={styles.filter__item}>
-										{FILTERBUTTONS.map(({particulars, name}) => {
-
-											return <>
-											<button className='filter__link' key={particulars} onClick={changeMenuButtons} value={particulars} data-test-id={`clothes-${typeProduct}-${particulars}`}>{name}</button>
+									<label key="isNewArrivals" onChange={changeMenuButtons} className={`clothes-filter-btn`} data-test-id={`clothes-${typeProduct}-isNewArrivals`}> 
+                            NEW ARRIVALS
+                                <input type="radio" name={typeProduct} value='isNewArrivals' className="button-clothes-menu" defaultChecked/>
+                            </label>
+										{FILTERBUTTONS.map(({particulars, name}) => (
+											<label key={particulars} onChange={changeMenuButtons} className={`clothes-filter-btn`} data-test-id={`clothes-${typeProduct}-${particulars}`}> {name}
+                                <input type="radio" name={typeProduct} value={particulars} className="button-clothes-menu" />
+                           		 </label>
 											
-											</>
-											
-										})}
+										))}
 									</li>
 								</ul>
 							</nav>
@@ -49,8 +59,13 @@ const Woomen = (typeCategory) => {
 							: null
 						))}
 
-						<button className={styles.woomens_all}>See All</button>
+						                    
+
+						
 					</div>
+					<Link to={`/${typeProduct}`}>
+							<button className={styles.woomens_all}> SEE ALL</button>
+                    </Link>
 				</div>
 			
 			</section>

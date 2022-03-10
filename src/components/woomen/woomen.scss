@@ -37,3 +37,31 @@
 .filter_link__active {
 	opacity: 1;
 }
+
+.clothes-filter-btn {
+	font-size: 12px;
+	opacity: 60%;
+	cursor: pointer;
+	font-family: 'Spartan';
+ }
+
+ .clothes-filter-btn input {
+	display: none;
+ }
+
+ .clothes-filter-menu {
+	width: 60%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+		 -ms-flex-pack: justify;
+			  justify-content: space-between;
+	-ms-flex-wrap: wrap;
+		 flex-wrap: wrap;
+ }
+
+ .woomen_filter__list__Cqoc8 li{
+	 display: flex;
+	 gap: rem(10);
+ }

@@ -5,7 +5,7 @@ import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
 import {StarRating} from "../../components/rating/rating";
 import { useParams } from "react-router-dom";
 import { CardsWoomen } from "../../components/cards-item/cards-woomen";
-import { useEffect } from "react";
+import { useEffect, useCallback} from "react";
 
 //import { Link } from "react-router-dom";
 import { MainSlider } from "../../components/header/slider/product-slider";
@@ -50,13 +50,13 @@ function ProductPage (page) {
 		 return res !== true ? colorProd.push(color.color) : null; 
 	})
 
-	const isChecked = () => {
+	const isChecked = useCallback (() => {
 		const sizeElem = document.getElementsByClassName("size-btn");
 		sizeElem[0].children[0].defaultChecked = true;
 		if (sizeElem[0].children[0].defaultChecked) {
 			  sizeElem[0].style.border ='2px solid black'
-		 };
-	};
+		 }
+	}, [])
 
 	let colorImgProd = [];
 	colorProd.forEach(color => {
@@ -69,10 +69,10 @@ function ProductPage (page) {
 		 setColorImg(e.target.name);
 	}
 
-	const buttonStyleChangeColor = () => {
+	const buttonStyleChangeColor = useCallback(() => {
 		 let btnColorImg = document.getElementsByClassName("header-product");
 		 [...btnColorImg].forEach(btn => btn.name === colorImg ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
-	}
+	}, [colorImg])
 	
 	useEffect(() => {
 		 buttonStyleChangeColor()
@@ -96,18 +96,9 @@ function ProductPage (page) {
 		 e.target.checked === true ? e.currentTarget.style.border = '2px solid black' : e.currentTarget.style.border = 'none' 
 	}
 	
-	const defaultSelect = () => {
-		 setColorImg(colorProd[0]);
-		 setUseSize([sizesProduct[0]])
-	}
-	
-	useEffect(() => {
-		 defaultSelect()
-	}, [colorProd[0]])
 
-	useEffect(() => {
-		 defaultSelect()
-	}, [sizesProduct[0]])
+	
+	
 
 	useEffect(() => {
 		 isChecked()
