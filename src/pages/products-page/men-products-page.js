@@ -19,7 +19,7 @@ export class MenProductsPage extends React.Component {
 		colorsProduct: [],
 		sizesProduct: [],
 		brandsProduct: [],
-		priceProduct: ['500+', '200-500', '100-200', '50-100', '0-50'],
+		priceProduct: ['$ 500+', '$ 200-500', '$ 100-200', '$ 50-100', '$ 0-50'],
 		isMenuOpen: false,
 		filters: {
 			 color: [],
@@ -51,10 +51,10 @@ export class MenProductsPage extends React.Component {
   };
 
   toggleMenuMode = () => {
-		return this.setState({isMenuOpen: !this.state.isMenuOpen}) ||
-		 this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct() ||
-		 this.state.isMenuOpen ? this.state.sizesProduct : this.addArrBrandsProduct() ||
-		 this.state.isMenuOpen ? this.state.brandsProduct : this.addArrSizesProduct()
+		this.setState({isMenuOpen: !this.state.isMenuOpen},
+		this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct(),
+		this.state.isMenuOpen ? this.state.sizesProduct : this.addArrBrandsProduct(),
+		this.state.isMenuOpen ? this.state.brandsProduct : this.addArrSizesProduct());
   }
 
   addArrColorsProduct = () => {
@@ -122,11 +122,11 @@ export class MenProductsPage extends React.Component {
 
   filterByPrice = (key) => (price) => {
 		const prices = {
-			 '500+': price >= 500, 
-			 '200-500': price >= 200 && price < 500,
-			 '100-200': price >= 100 && price < 200,
-			 '50-100': price >=50 && price < 100,
-			 '0-50': price >= 0 && price < 50,
+			 '$ 500+': price >= 500, 
+			 '$ 200-500': price >= 200 && price < 500,
+			 '$ 100-200': price >= 100 && price < 200,
+			 '$ 50-100': price >=50 && price < 100,
+			 '$ 0-50': price >= 0 && price < 50,
 		};
 		return prices[key];
   } 
@@ -153,6 +153,7 @@ export class MenProductsPage extends React.Component {
 
 		this.setState({filterProduct: filterProd})  
   }
+
 render () {
 	const {page} = this.props;
 	const productType = page.toLowerCase();
@@ -205,7 +206,7 @@ render () {
 				<div className={styles.woomens__container}>
 
 					<div className={styles.catalog__card}>		
-					{                
+							{                
                         this.state.filterProduct.length > 0 ? 
                         
                         this.state.filterProduct.map(product => (
@@ -213,10 +214,10 @@ render () {
                         ))
                         : 
                         this.state.filterProduct.length === 0 &&
-                        this.state.filters.color.length > 0 ||
+                        (this.state.filters.color.length > 0 ||
                         this.state.filters.size.length > 0 ||
                         this.state.filters.brand.length > 0 ||
-                        this.state.filters.price.length > 0 ? null :
+                        this.state.filters.price.length > 0) ? null :
 
                         PRODUCTS[productType].map(product => (
                             <CardsWoomen product={product} key={product.id} />

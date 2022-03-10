@@ -5,10 +5,10 @@ import Footer from './components/footer/footer';
 import { MainPage } from './pages/main-page/main-page';
 import { MenProductsPage } from './pages/products-page/men-products-page';
 import { Route, Routes } from 'react-router-dom';
-import ProductPage from './pages/product-page/product-page';
+import { ProductPage } from './pages/product-page/product-page';
 
 
-function App() {
+const App = () => {
   return (
     <div data-test-id='app' className={styles.wrapper}>
       <Header />

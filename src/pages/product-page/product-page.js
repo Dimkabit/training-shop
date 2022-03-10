@@ -5,6 +5,7 @@ import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
 import {StarRating} from "../../components/rating/rating";
 import { useParams } from "react-router-dom";
 import { CardsWoomen } from "../../components/cards-item/cards-woomen";
+import { useEffect } from "react";
 
 //import { Link } from "react-router-dom";
 import { MainSlider } from "../../components/header/slider/product-slider";
@@ -30,7 +31,7 @@ import Anonation from "./assets/icons/annotation.png";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 
-const ProductPage = (page) => {
+function ProductPage (page) {
 	const pages = page.page;
 
 	let idProduct = useParams();
@@ -43,12 +44,19 @@ const ProductPage = (page) => {
 	//let discountProduct = product.discount;
 	let ratingProduct = product.rating;
 
-
 	let colorProd = [];
 	product.images.forEach(color => {
 		 let res = colorProd.some(col => col === color.color);
 		 return res !== true ? colorProd.push(color.color) : null; 
 	})
+
+	const isChecked = () => {
+		const sizeElem = document.getElementsByClassName("size-btn");
+		sizeElem[0].children[0].defaultChecked = true;
+		if (sizeElem[0].children[0].defaultChecked) {
+			  sizeElem[0].style.border ='2px solid black'
+		 };
+	};
 
 	let colorImgProd = [];
 	colorProd.forEach(color => {
@@ -60,6 +68,15 @@ const ProductPage = (page) => {
 	const colorImgProduct = (e) => {  
 		 setColorImg(e.target.name);
 	}
+
+	const buttonStyleChangeColor = () => {
+		 let btnColorImg = document.getElementsByClassName("header-product");
+		 [...btnColorImg].forEach(btn => btn.name === colorImg ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
+	}
+	
+	useEffect(() => {
+		 buttonStyleChangeColor()
+	}, [buttonStyleChangeColor])
 
 	const [useSize, setUseSize] = useState([]);
 
@@ -75,8 +92,30 @@ const ProductPage = (page) => {
 		 setUseSize(arrSize);
 	}
 
+	const buttonChangeSize = (e) => {
+		 e.target.checked === true ? e.currentTarget.style.border = '2px solid black' : e.currentTarget.style.border = 'none' 
+	}
+	
+	const defaultSelect = () => {
+		 setColorImg(colorProd[0]);
+		 setUseSize([sizesProduct[0]])
+	}
+	
+	useEffect(() => {
+		 defaultSelect()
+	}, [colorProd[0]])
+
+	useEffect(() => {
+		 defaultSelect()
+	}, [sizesProduct[0]])
+
+	useEffect(() => {
+		 isChecked()
+	}, [isChecked]);
+
+
 	const productType = pages.toLowerCase();
-	const pageType = page.page + ` ► ${nameProduct}`;
+	const pageType = page.page;
 	
 	return (
 		<div className="productpage" data-test-id={`product-page-${productType}`}>
@@ -146,8 +185,8 @@ const ProductPage = (page) => {
 										<div className="product-button-btn">
                             {sizesProduct.map((size, i) => (
                                 <div className="size-btn" key={i}>
-                                    <input type='checkbox' name={size} value={size} id={size} onChange={selectedSize} />
-                                    <label htmlFor={size}>{size}</label>
+                                    <input type='checkbox' name={size} value={size} key={i} id={size} onChange={selectedSize} />
+                                    <label htmlFor={size} onClick={buttonChangeSize}>{size}</label>
                                 </div>
                             ))}
 										</div>
@@ -201,7 +240,7 @@ const ProductPage = (page) => {
 										<div className="table-product__label">Color:</div>
 										{colorProd.map(color =>(<div className="table-product__value" key={color}>{color}</div>))}
 										<div className="table-product__label">Size:</div>
-										{sizesProduct.map((size, i) => (<div className="table-product__value" key={i}>{size}L</div>))}
+										{sizesProduct.map((size, i) => (<div className="table-product__value" key={i}>{size}</div>))}
 										<div className="table-product__label">Material:</div>
 										<div className="table-product__value">{materialProduct}</div>
 									</div>
@@ -209,14 +248,14 @@ const ProductPage = (page) => {
 								<div className="body-product__review rewiew-product">
 									<span className="rewiew-product__title">REVIEWS</span>
 									<div className="rewiew-product__ratings">
-										 <StarRating rating={ratingProduct}/>
+										 <StarRating rating={ratingProduct} />
 										 <div className="rewiew-product__write"><img src={Anonation} alt="stars" /><span>Write a review</span></div>
 									</div>
 									{reviewsProduct.map(reviews => (
 										<>
 										<div className="rewiew-product__rating" key={reviews.id}>
 											<div><span className="text1">{reviews.name}</span></div>
-											<div><span className="text">3 months ago </span><StarRating /></div>
+											<div><span className="text">3 months ago </span><StarRating rating={reviews.rating}/></div>
 										</div>
 										<div className="rewiew-product__rating-text">{reviews.text}</div>
 										</>
@@ -268,7 +307,7 @@ const ProductPage = (page) => {
 											>
 											{PRODUCTS[pages.toLowerCase()].map(product => (
 												<SwiperSlide to={`/${product.category}/${product.id}`} key={`${product.category}${product.id}`}>
-													<CardsWoomen product={product} key={product.id}/>
+													<CardsWoomen product={product} key={product.id} />
 												</SwiperSlide>					
 												))}
 											</Swiper>
@@ -283,4 +322,4 @@ const ProductPage = (page) => {
 	)
 };
 
-export default ProductPage;
+export {ProductPage};
