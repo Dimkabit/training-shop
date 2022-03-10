@@ -19,8 +19,8 @@ const Woomen = (typeCategory) => {
 		 setParticulars(e.target.value);
 		 isChecked();
 	}
-	const isChecked = useCallback (() => {
-		const changeMenuButtons = document.getElementsByClassName("filter__link");
+	const isChecked = useCallback(() => {
+		const changeMenuButtons = document.getElementsByClassName("clothes-filter-btn");
 		[...changeMenuButtons].forEach(btn => btn.children[0].checked ? btn.style.opacity = '100%' :  btn.style.opacity = '60%' );
   }, [])
 
@@ -53,11 +53,12 @@ const Woomen = (typeCategory) => {
 							</nav>
 						</div>
 					<div className={styles.catalog__card}>		
-							{PRODUCTS[typeProduct].map(product => (
-								product.particulars[particulars] === true ?
-							<CardsWoomen product={product} key={product.id} />
-							: null
-						))}
+								{PRODUCTS[typeProduct].map(product => (
+                        
+                        product.particulars[particulars] === true ?
+                        <CardsWoomen product={product} key={product.id} />
+                        : null
+                    ))}
 
 						                    
 

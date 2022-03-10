@@ -1,24 +1,21 @@
 //export const filterButtons = ['NEW ARRIVALS', 'SPECIALS', 'BESTSELLERS', 'MOST VIEWED', 'FEATURED PRODUCTS'];
 
 export const FILTERBUTTONS = [
+
 	{
-		particularName: 'isNewArrivals',
-		name: 'NEW ARRIVALS',
-	},
-	{
-		particularName: 'isSpecial',
+		particulars: 'isSpecial',
 		name: 'SPETIALS',
 	},
 	{
-		particularName: 'isBestsellers',
+		particulars: 'isBestsellers',
 		name: 'BESTSELLERS',
 	},
 	{
-		particularName: 'isMostViewed',
+		particulars: 'isMostViewed',
 		name: 'MOST VIEWED',
 	},
 	{
-		particularName: 'isFeatured',
+		particulars: 'isFeatured',
 		name: 'FEATURED PRODUCTS',
 	},
 ];

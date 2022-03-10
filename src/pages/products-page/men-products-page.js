@@ -202,9 +202,60 @@ render () {
                     isMenuOpen={this.state.isMenuOpen}
                     filterСategory={this.filterСategory}
                 />
+					 <div className='show-filter-result'>
+                    {
+                        this.state.filterProduct.length > 0 ? 
+                        <>
+                            <span className='show-filter-result-bold'>{this.state.filterProduct.length}</span>
+                            <span className='show-filter-result-bold'>items Found</span>
+                        </>
+                        : null
+                    }
+                    {
+                        this.state.filters.color.length > 0 ? 
+                        <>
+                            <span className='show-filter-result-opasity'>Color:</span>
+                            {this.state.filters.color.map(color => (
+                                <span className='show-filter-result-opasity' key={color}>{color}</span>
+                            ))}
+                        </>
+                        : null
+                    }
+                    {
+                        this.state.filters.size.length > 0 ? 
+                        <>
+                            <span className='show-filter-result-opasity'>Size:</span>
+                            {this.state.filters.size.map(size => (
+                                <span className='show-filter-result-opasity' key={size}>{size}</span>
+                            ))}
+                        </>
+                        : null
+                    }
+                    {
+                        this.state.filters.brand.length > 0 ? 
+                        <>
+                            <span className='show-filter-result-opasity'>Brand:</span>
+                            {this.state.filters.brand.map(brand => (
+                                <span className='show-filter-result-opasity' key={brand}>{brand}</span>
+                            ))}
+                        </>
+                        : null
+                    }
+                    {
+                        this.state.filters.price.length > 0 ? 
+                        <>
+                            <span className='show-filter-result-opasity'>Price:</span>
+                            {this.state.filters.price.map(price => (
+                                <span className='show-filter-result-opasity' key={price}>{price}</span>
+                            ))}
+                        </>
+                        : null
+                    }
+                    
+                </div>
 				<div className={styles.woomen}>
 				<div className={styles.woomens__container}>
-
+				
 					<div className={styles.catalog__card}>		
 							{                
                         this.state.filterProduct.length > 0 ? 
@@ -213,11 +264,11 @@ render () {
                             <CardsWoomen product={product} key={product.id} />
                         ))
                         : 
-                        this.state.filterProduct.length === 0 &&
-                        (this.state.filters.color.length > 0 ||
+                        this.state.filterProduct.length === 0 ||
+                        this.state.filters.color.length > 0 ||
                         this.state.filters.size.length > 0 ||
                         this.state.filters.brand.length > 0 ||
-                        this.state.filters.price.length > 0) ? null :
+                        this.state.filters.price.length > 0 ? null :
 
                         PRODUCTS[productType].map(product => (
                             <CardsWoomen product={product} key={product.id} />
