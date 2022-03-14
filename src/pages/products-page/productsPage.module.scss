@@ -289,10 +289,12 @@
 	}
 }
 .woomen-all {
+	
 }
 
 
 .woomens {
+
 	padding-bottom: clamp(rem(30), 5vw, rem(46));
 	// .woomens__container
 
@@ -305,11 +307,12 @@
 }
 
 .catalog {
-	
+
 	// .catalog__card
 
 	&__card {
 		padding-top: rem(48);
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -564,3 +567,4 @@
 	}
 }
 //============================================
+

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import { PRODUCTS } from "../../constants/products";
 import { FilterProductsCategory } from "../../components/filterProductsCategory/filterProductsCategory";
@@ -50,12 +50,15 @@ export class MenProductsPage extends React.Component {
 		}
   };
 
-  toggleMenuMode = () => {
-		this.setState({isMenuOpen: !this.state.isMenuOpen},
-		this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct(),
-		this.state.isMenuOpen ? this.state.sizesProduct : this.addArrBrandsProduct(),
-		this.state.isMenuOpen ? this.state.brandsProduct : this.addArrSizesProduct());
-  }
+	toggleMenuMode = () => {
+			this.setState({isMenuOpen: !this.state.isMenuOpen})
+			(this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct() &&
+			this.state.isMenuOpen ? this.state.sizesProduct : this.addArrBrandsProduct() &&
+			this.state.isMenuOpen ? this.state.brandsProduct : this.addArrSizesProduct())
+	}
+
+
+
 
   addArrColorsProduct = () => {
 		const {page} = this.props;
@@ -153,6 +156,10 @@ export class MenProductsPage extends React.Component {
 
 		this.setState({filterProduct: filterProd})  
   }
+  /*toggleMenuMode = () => {
+	this.setState({isMenuOpen: !this.state.isMenuOpen})
+	(this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct())
+}*/
 
 render () {
 	const {page} = this.props;
@@ -180,17 +187,14 @@ render () {
 							<img src={!this.state.isMenuOpen ? adjst : filterClosed } alt="icon" />
 							Filter
 						</button>
-						
 					</div>
 					<div>
-
 					</div>
 					<div className={styles.filter__center}>
 						<img src={menu} className={styles.active} alt="menu" />
 						<img src={view} alt="view" />
 					</div>
 					<div className={styles.filter__control}>
-					
 					</div>
 				</div>
 				<FilterProductsCategory 
@@ -264,11 +268,11 @@ render () {
                             <CardsWoomen product={product} key={product.id} />
                         ))
                         : 
-                        this.state.filterProduct.length === 0 ||
-                        this.state.filters.color.length > 0 ||
+                        this.state.filterProduct.length === 0 &&
+                        (this.state.filters.color.length > 0 ||
                         this.state.filters.size.length > 0 ||
                         this.state.filters.brand.length > 0 ||
-                        this.state.filters.price.length > 0 ? null :
+                        this.state.filters.price.length > 0) ? null :
 
                         PRODUCTS[productType].map(product => (
                             <CardsWoomen product={product} key={product.id} />

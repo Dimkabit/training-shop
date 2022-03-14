@@ -5,9 +5,9 @@ import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
 import {StarRating} from "../../components/rating/rating";
 import { useParams } from "react-router-dom";
 import { CardsWoomen } from "../../components/cards-item/cards-woomen";
-import { useEffect, useCallback} from "react";
+import { useEffect, useCallback } from "react";
 
-//import { Link } from "react-router-dom";
+import classNames from "classnames";
 import { MainSlider } from "../../components/header/slider/product-slider";
 import { PRODUCTS } from "../../constants/products";
 
@@ -41,7 +41,7 @@ function ProductPage (page) {
 	let priceProduct = product.price;
 	let sizesProduct = product.sizes;
 	let reviewsProduct = product.reviews;
-	//let discountProduct = product.discount;
+	let discountProduct = product.discount;
 	let ratingProduct = product.rating;
 
 	let colorProd = [];
@@ -50,71 +50,62 @@ function ProductPage (page) {
 		 return res !== true ? colorProd.push(color.color) : null; 
 	})
 
-	const isChecked = useCallback (() => {
-		const sizeElem = document.getElementsByClassName("size-btn");
-		sizeElem[0].children[0].defaultChecked = true;
-		if (sizeElem[0].children[0].defaultChecked) {
-			  sizeElem[0].style.border ='2px solid black'
-		 }
-	}, [])
-
 	let colorImgProd = [];
 	colorProd.forEach(color => {
 		 product.images.find(prodcol => prodcol.color === color ? colorImgProd.push([prodcol.url, prodcol.color]) : null)
 	})
 
 	const [colorImg, setColorImg] = useState(colorProd[0]);
-
 	const colorImgProduct = (e) => {  
 		 setColorImg(e.target.name);
 	}
 
 	const buttonStyleChangeColor = useCallback(() => {
-		 let btnColorImg = document.getElementsByClassName("header-product");
+		 let btnColorImg = document.getElementsByClassName("colorImages");
 		 [...btnColorImg].forEach(btn => btn.name === colorImg ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
-	}, [colorImg])
+	}, [colorImg]);
 	
 	useEffect(() => {
 		 buttonStyleChangeColor()
 	}, [buttonStyleChangeColor])
 
-	const [useSize, setUseSize] = useState([]);
-
-	const selectedSize = (e) => {
-		 let arrSize = [...useSize];
-		 if(e.target.checked === true) {
-			  arrSize.push(e.target.value);
-		 } else {
-			  arrSize.forEach((size, i) => {
-					return size === e.target.value ? arrSize.splice(i, 1) : null;
-			  });
-		 }
-		 setUseSize(arrSize);
+	const [useSize, setUseSize] = useState('');
+	const sizeImgProduct = (e) => {
+		 setUseSize(e.target.value);
 	}
 
-	const buttonChangeSize = (e) => {
-		 e.target.checked === true ? e.currentTarget.style.border = '2px solid black' : e.currentTarget.style.border = 'none' 
-	}
-	
 
-	
-	
+	const buttonStyleChangeSize = useCallback(() => {
+		 let btnSize = document.getElementsByClassName("size-btn");
+		 [...btnSize].forEach(btn => btn.value === useSize ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
+	}, [useSize])
 
 	useEffect(() => {
-		 isChecked()
-	}, [isChecked]);
+		 buttonStyleChangeSize()
+	}, [buttonStyleChangeSize])
 
+	const defaultSelect = () => {
+		 setColorImg(colorProd[0]);
+		 setUseSize(sizesProduct[0])
+	}
+	
+	useEffect(() => {
+		 defaultSelect()
+	}, [colorProd[0]])
+
+	useEffect(() => {
+		 defaultSelect()
+	}, [sizesProduct[0]])
 
 	const productType = pages.toLowerCase();
 	const pageType = page.page;
-	
 	return (
 		<div className="productpage" data-test-id={`product-page-${productType}`}>
 			<div className="productpage__top">
 			<div className="productpage__container">
 				<div className="woomens-product__header">
 					<div className="woomens-product__pages">
-						<MenuTypePage page={pageType}/>
+						<MenuTypePage page={pageType} nameProduct={nameProduct}/>
 					</div>
 					<div className="woomens-product__share">
 						<img src={Share} alt="share" />
@@ -126,7 +117,7 @@ function ProductPage (page) {
 						<div className="woomens-product__review">
 							<div className="rating rating_set">
 								<div className="rating__body">
-									<StarRating  rating={ratingProduct}/>
+									<StarRating  rating={reviewsProduct.length} />
 								</div>
 							</div>
 							<span>{reviewsProduct.length} 2 Reviews</span>
@@ -161,25 +152,22 @@ function ProductPage (page) {
 									<div className="header-product__image">
 									{
                                 colorImgProd.map((img, i) => (
-                                    <img className="header-product active" src={`https://training.cleverland.by/shop${img[0]}`} name={img[1]} onClick={colorImgProduct} alt='img' key={i}  width="64" height="64"/>
+                                    <img src={`https://training.cleverland.by/shop${img[0]}`} className="colorImages" name={img[1]} onClick={colorImgProduct} alt='img' key={i} width='64' heigth='64'/>
                                 ))
                             }
-
 									</div>
 									<div className="header-product__sizes sizes-prod">
 										<div className="size-prod__size">
 										<p>Size:</p> 
-											{useSize.map((size, i) => (
-											<span key={i} className="text">{size}</span>
-										))}
+											{useSize}
 										</div>
 										<div className="product-button-btn">
-                            {sizesProduct.map((size, i) => (
-                                <div className="size-btn" key={i}>
-                                    <input type='checkbox' name={size} value={size} key={i} id={size} onChange={selectedSize} />
-                                    <label htmlFor={size} onClick={buttonChangeSize}>{size}</label>
+                                <div className="size-btn">
+										 	 {sizesProduct.map((size, i) => (
+                               		 <button className="size-btn" key={i} onClick={sizeImgProduct} value={size}>{size}</button>
+                            			))}
                                 </div>
-                            ))}
+                           
 										</div>
 										<div className="sizes-prod__guide">
 											<img src={Heandle} alt="heander" />
@@ -188,7 +176,10 @@ function ProductPage (page) {
 									</div>
 								</div>
 								<div class="product-information__price">
-									<span>$ {priceProduct}</span>
+										{discountProduct !== null ? 
+                                    <span className="card-product-price">{`$ ${((priceProduct * (100 - +discountProduct.replace(/[\D]+/g, '')))/100).toFixed(2) }`}</span> : null
+                                }
+                                <span className={classNames("card-product-price", {active: discountProduct !== null})}>$ {priceProduct}</span>
 									<button>ADD TO CARD</button>
 									<img src={Heart} alt='img' />
 									<img src={Compare} alt='img' />
@@ -296,7 +287,7 @@ function ProductPage (page) {
 														},
 													}}
 											>
-											{PRODUCTS[pages.toLowerCase()].map(product => (
+											{PRODUCTS[pages.toLowerCase()].map((product) => (
 												<SwiperSlide to={`/${product.category}/${product.id}`} key={`${product.category}${product.id}`}>
 													<CardsWoomen product={product} key={product.id} />
 												</SwiperSlide>					
