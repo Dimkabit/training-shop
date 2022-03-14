@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { PRODUCTS } from "../../constants/products";
 import { FilterProductsCategory } from "../../components/filterProductsCategory/filterProductsCategory";
@@ -156,10 +156,7 @@ export class MenProductsPage extends React.Component {
 
 		this.setState({filterProduct: filterProd})  
   }
-  /*toggleMenuMode = () => {
-	this.setState({isMenuOpen: !this.state.isMenuOpen})
-	(this.state.isMenuOpen ? this.state.colorsProduct : this.addArrColorsProduct())
-}*/
+
 
 render () {
 	const {page} = this.props;
