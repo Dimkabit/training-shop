@@ -69,7 +69,7 @@ function ProductPage (page) {
 		 buttonStyleChangeColor()
 	}, [buttonStyleChangeColor])
 
-	const [useSize, setUseSize] = useState('');
+	const [useSize, setUseSize] = useState(['']);
 	const sizeImgProduct = (e) => {
 		 setUseSize(e.target.value);
 	}
@@ -84,18 +84,9 @@ function ProductPage (page) {
 		 buttonStyleChangeSize()
 	}, [buttonStyleChangeSize])
 
-	const defaultSelect = () => {
-		 setColorImg(colorProd[0]);
-		 setUseSize(sizesProduct[0])
-	}
-	
-	useEffect(() => {
-		 defaultSelect()
-	}, [colorProd[0]])
 
-	useEffect(() => {
-		 defaultSelect()
-	}, [sizesProduct[0]])
+
+
 
 	const productType = pages.toLowerCase();
 	const pageType = page.page;
