@@ -12,9 +12,7 @@ const IconNav = () => {
 				<li className={styles.foot_header__link}><a href="/"><img src={search} alt="icon:search" /></a></li>
 				<li className={styles.foot_header__link}><a href="/"><img src={globe} alt="icon:globe" /></a></li>
 				<li className={styles.foot_header__link}><a href="/"><img src={user} alt="icon:user" /></a></li>
-			
 				<ButtonCart /> 
-			
 			</ul>
 		</div>
 	)

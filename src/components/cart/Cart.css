@@ -1,7 +1,4 @@
-* {
-	font-family: 'Spartan';
-	font-size: 15px;
-}
+
 
 .container-cart {
 	width: 100%;
@@ -12,7 +9,6 @@
 	left: 0;
 	z-index: 10;
 	justify-content: flex-end;
-	
 	transform: translateX(100%);
 	transition: transform 0.2s;
 }
@@ -26,7 +22,7 @@
 .container-cart__cart {
 	position: absolute;
 	right: 0;
-	width: 360px;
+	width: 320px;
 	height: 100vh;
 	background: #FFFFFF;
 	display: flex;
