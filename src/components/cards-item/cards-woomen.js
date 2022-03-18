@@ -28,6 +28,11 @@ const CardsWoomen = (product) => {
 								<a href="/" className={styles.roduct_card__link}>{prodInfo.name}</a>
 							</h4>
 							<div className={styles.product_card__rating}>
+							{prodInfo.discount !== null ? 
+                                <span className="card-product-price-discount">
+                                    {`$ ${((prodInfo.price * (100 - +prodInfo.discount.replace(/[\D]+/g, '')))/100).toFixed(2) }`}
+                                </span> : null
+                            }
 								<div className={classNames('styles.product_card__price', {active: prodInfo.discount !== null})}>$ {prodInfo.price}</div>
 								<div className={styles.rating__body}>
 									<StarRating rating={prodInfo.rating}/>
