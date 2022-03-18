@@ -12,13 +12,13 @@ const App = () => {
   return (
     <div data-test-id='app' className={styles.wrapper}>
       <Header />
-      <Routes>
-        <Route path='/' element={<MainPage />} exact/>
-        <Route path='/women' element={<MenProductsPage page={'Women'} />} exact/>
-        <Route path='/men' element={<MenProductsPage page={"Men"} />} exact />
-        <Route path='/men/:id' element={<ProductPage page={"Men"} />} expect />
-        <Route path='/women/:id' element={<ProductPage page={"Women"} />} expect />
-      </Routes>
+        <Routes>
+          <Route path='/' element={<MainPage />} exact/>
+          <Route path='/women' element={<MenProductsPage page={'Women'} />} exact/>
+          <Route path='/men' element={<MenProductsPage page={"Men"} />} exact />
+          <Route path='/men/:id' element={<ProductPage page={"Men"} />} expect />
+          <Route path='/women/:id' element={<ProductPage page={"Women"} />} expect />
+        </Routes>
       <Footer />
     </div>
   );

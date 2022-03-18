@@ -10,6 +10,7 @@ import { useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { MainSlider } from "../../components/header/slider/product-slider";
 import { PRODUCTS } from "../../constants/products";
+import { ByInCart } from '../../components/byinCart/ByInCart';
 
 import Share from "../products-page/assets/icons/share.svg";
 import Arrow from "./assets/icons/arrow.svg";
@@ -34,60 +35,69 @@ import { Navigation } from "swiper";
 function ProductPage (page) {
 	const pages = page.page;
 
-	let idProduct = useParams();
-	let product = PRODUCTS[pages.toLowerCase()].find(prod => prod.id===idProduct.id);
-	let nameProduct = product.name;
-	let materialProduct = product.material;
-	let priceProduct = product.price;
-	let sizesProduct = product.sizes;
-	let reviewsProduct = product.reviews;
-	let discountProduct = product.discount;
-	let ratingProduct = product.rating;
+	const idProduct = useParams();
+	const idProducta = idProduct.id;
+	const product = PRODUCTS[pages.toLowerCase()].find(prod => prod.id===idProduct.id);
+	const nameProduct = product.name;
+	const materialProduct = product.material;
+	const priceProduct = product.price;
+	const sizesProduct = product.sizes;
+	const reviewsProduct = product.reviews;
+	const discountProduct = product.discount;
+	const ratingProduct = product.rating;
 
-	let colorProd = [];
-	product.images.forEach(color => {
-		 let res = colorProd.some(col => col === color.color);
-		 return res !== true ? colorProd.push(color.color) : null; 
-	})
+	const colorProductText = [];
+    product.images.forEach(color => {
+        let res = colorProductText.some(col => col === color.color);
+        return res !== true ? colorProductText.push(color.color) : null; 
+    })
 
-	let colorImgProd = [];
-	colorProd.forEach(color => {
-		 product.images.find(prodcol => prodcol.color === color ? colorImgProd.push([prodcol.url, prodcol.color]) : null)
-	})
+    const colorProductImg = [];
+    
+    colorProductText.forEach(color => {
+        product.images.find(prodcol => prodcol.color === color ? colorProductImg.push([prodcol.url, prodcol.color]) : null)
+    })
 
-	const [colorImg, setColorImg] = useState(colorProd[0]);
-	const colorImgProduct = (e) => {  
-		 setColorImg(e.target.name);
-	}
+    const [useColor, setUseColor] = useState(colorProductText[0]);
+    const [imgProduct, setImgProduct] = useState(`https://training.cleverland.by/shop${colorProductImg[0][0]}`);
+    const colorImgProduct = (e) => {  
+        setUseColor(e.target.name);
+        setImgProduct(e.target.src);
+    }
 
-	const buttonStyleChangeColor = useCallback(() => {
-		 let btnColorImg = document.getElementsByClassName("colorImages");
-		 [...btnColorImg].forEach(btn => btn.name === colorImg ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
-	}, [colorImg]);
-	
-	useEffect(() => {
-		 buttonStyleChangeColor()
-	}, [buttonStyleChangeColor])
+    const buttonStyleChangeColor = useCallback(() => {
+        let btnColorImg = document.getElementsByClassName("colorImages");
+        [...btnColorImg].forEach(btn => btn.name === useColor ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
+    }, [useColor]);
+    
+    useEffect(() => { buttonStyleChangeColor() }, [buttonStyleChangeColor])
 
-	const [useSize, setUseSize] = useState(['']);
-	const sizeImgProduct = (e) => {
-		 setUseSize(e.target.value);
-	}
+    const [useSize, setUseSize] = useState('');
+    const sizeImgProduct = (e) => {
+        setUseSize(e.target.value);
+    }
+
+    const buttonStyleChangeSize = useCallback(() => {
+        let btnSize = document.getElementsByClassName("size-btn");
+        [...btnSize].forEach(btn => btn.value === useSize ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
+    }, [useSize])
+	     
+	 useEffect(() => { buttonStyleChangeSize() }, [buttonStyleChangeSize])
+
+    const [discounProductPrice, setDiscounProductPrice] = useState(0);
+    
+    const discountProductPrice = (price, discount) => {
+        const pric =  discount !== null ? +((price * (100 - +discount.replace(/[\D]+/g, '')))/100).toFixed(2) : price;
+        setDiscounProductPrice(pric);
+    }
+    
+	 useEffect(() => { discountProductPrice(priceProduct, discountProduct) })
 
 
-	const buttonStyleChangeSize = useCallback(() => {
-		 let btnSize = document.getElementsByClassName("size-btn");
-		 [...btnSize].forEach(btn => btn.value === useSize ? btn.style.border = '2px solid black' : btn.style.border = 'none');  
-	}, [useSize])
-
-	useEffect(() => {
-		 buttonStyleChangeSize()
-	}, [buttonStyleChangeSize])
 
 
-
-
-
+	const orderedProduct =  { idProducta, nameProduct, useColor, useSize, discounProductPrice, counter: 1, imgProduct, 
+		price: discounProductPrice};
 	const productType = pages.toLowerCase();
 	const pageType = page.page;
 	return (
@@ -137,12 +147,12 @@ function ProductPage (page) {
 									<div className="header-product__line">
 										<div className="header-product__title-block">
 											<h5 className="header-product__title">Color:</h5>
-											<span className="header-product__subtitle">{colorImg}</span>
+											<span className="header-product__subtitle">{useColor}</span>
 										</div>
 									</div>
 									<div className="header-product__image">
 									{
-                                colorImgProd.map((img, i) => (
+										colorProductImg.map((img, i) => (
                                     <img src={`https://training.cleverland.by/shop${img[0]}`} className="colorImages" name={img[1]} onClick={colorImgProduct} alt='img' key={i} width='64' heigth='64'/>
                                 ))
                             }
@@ -153,7 +163,7 @@ function ProductPage (page) {
 											{useSize}
 										</div>
 										<div className="product-button-btn">
-                                <div className="size-btn">
+                                <div className="size-btns">
 										 	 {sizesProduct.map((size, i) => (
                                		 <button className="size-btn" key={i} onClick={sizeImgProduct} value={size}>{size}</button>
                             			))}
@@ -171,7 +181,7 @@ function ProductPage (page) {
                                     <span className="card-product-price">{`$ ${((priceProduct * (100 - +discountProduct.replace(/[\D]+/g, '')))/100).toFixed(2) }`}</span> : null
                                 }
                                 <span className={classNames("card-product-price", {active: discountProduct !== null})}>$ {priceProduct}</span>
-									<button>ADD TO CARD</button>
+									<ByInCart orderedProduct={orderedProduct} />
 									<img src={Heart} alt='img' />
 									<img src={Compare} alt='img' />
 								</div>
@@ -211,7 +221,7 @@ function ProductPage (page) {
 									<div className="table-product__title">ADDITIONAL INFORMATION</div>
 									<div className="table-product">
 										<div className="table-product__label">Color:</div>
-										{colorProd.map(color =>(<div className="table-product__value" key={color}>{color}</div>))}
+										{colorProductText.map(color =>(<div className="table-product__value" key={color}>{color}</div>))}
 										<div className="table-product__label">Size:</div>
 										{sizesProduct.map((size, i) => (<div className="table-product__value" key={i}>{size}</div>))}
 										<div className="table-product__label">Material:</div>

@@ -84,3 +84,13 @@
 .woomen_catalog__card__OZfcp {
 	margin-bottom: rem(30);
 }
+
+.filter-button {
+	background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

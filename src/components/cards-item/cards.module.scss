@@ -29,7 +29,8 @@
 .product_card {
 	display: flex;
 	flex-direction: column;
-	max-width: 255px;
+	width: 255px;
+	margin-left: 10px;
 	position: relative;
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 	transition: box-shadow 0.3s ease 0s;
@@ -57,12 +58,8 @@
 	}
 
 	// .product-card__body
-
 	&__body {
 	}
-
-	// .product-card__title
-
 
 	&__title {
 		padding-top: rem(16);
@@ -107,15 +104,7 @@
 .rating__body {
 	position: relative;
 }
-/*.rating__body::before {
-	content: "★★★★★";
-	display: block;
-	color: #897857;
-	opacity: 0.6;
-	.active {
-		color: #ffd300;
-	}
-}*/
+
 .rating__active {
 	position: absolute;
 	width: 0%;

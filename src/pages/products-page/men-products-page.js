@@ -5,7 +5,7 @@ import { FilterProductsCategory } from "../../components/filterProductsCategory/
 import styles from "./productsPage.module.scss";
 import { MenuTypePage } from "../../components/menuTypePage/menuTypePage";
 import { CardsWoomen } from "../../components/cards-item/cards-woomen";
-import adjst from "./assets/icons/adjustments.svg";
+import adjst from "./assets/icons/adjst.png";
 import filterClosed from "./assets/icons/filterClosed.png";
 import menu from "./assets/icons/menu.svg";
 import share from "./assets/icons/share.svg";
@@ -180,8 +180,8 @@ render () {
 			<div className={styles.woomen__container}>
 				<div className={styles.filter_body__filter}>
 					<div className={styles.filter__title}>
-						<button onClick={this.toggleMenuMode} data-test-id="filter-button">
-							<img src={!this.state.isMenuOpen ? adjst : filterClosed } alt="icon" />
+						<button onClick={this.toggleMenuMode} data-test-id="filter-button" className="filter-button">
+							<img src={!this.state.isMenuOpen ? adjst : filterClosed } alt="icon" width="16" heigth="16"/>
 							Filter
 						</button>
 					</div>

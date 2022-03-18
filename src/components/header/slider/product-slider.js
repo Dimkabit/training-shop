@@ -26,6 +26,7 @@ const MainSlider = (img) => {
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="product-slider-first"
+                loop={true}
                 breakpoints={{
                         992:{
                             spaceBetween: 30,
@@ -43,8 +44,8 @@ const MainSlider = (img) => {
             </Swiper>
             <div className="product-slider-second">
                 <div className="button-slider">
-                    <button className="btn-slider-top"><img src={Arrow} alt="img" /></button>
-                    <button className="btn-slider-bottom"><img src={Arrow} alt="img" /></button>
+                    <button className="btn-slider-top"><img src={Arrow} alt="img" width="30" heigth="30"/></button>
+                    <button className="btn-slider-bottom"><img src={Arrow} alt="img" width="30" heigth="30"/></button>
                 </div>
                 
                 <Swiper
