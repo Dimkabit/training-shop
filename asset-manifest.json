@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.6b24405e.css",
-    "main.js": "/training-shop/static/js/main.fe115806.js",
+    "main.css": "/training-shop/static/css/main.74c56dfd.css",
+    "main.js": "/training-shop/static/js/main.a1bb4636.js",
     "static/js/787.47ca6e30.chunk.js": "/training-shop/static/js/787.47ca6e30.chunk.js",
     "static/media/slid1.png": "/training-shop/static/media/slid1.c59a67a48a101ef83f4a.png",
     "static/media/woomen.png": "/training-shop/static/media/woomen.3e118f4f307e4b9169e9.png",
@@ -24,7 +24,6 @@
     "static/media/truck.svg": "/training-shop/static/media/truck.2e0e1bae246d68b1f9657d6c537fe7dd.svg",
     "static/media/view.svg": "/training-shop/static/media/view.e14ce47c52f142cd39827bdd8bc39b12.svg",
     "static/media/instagram.svg": "/training-shop/static/media/instagram.2a030663c04e39e407430b43aa937d84.svg",
-    "static/media/adjustments.svg": "/training-shop/static/media/adjustments.bcf7971464cb4a14b951458c371184f9.svg",
     "static/media/share.svg": "/training-shop/static/media/share.13f271dbf5a3d618bd5d3edc2f75b1a2.svg",
     "static/media/globe.svg": "/training-shop/static/media/globe.afab6c089df5bad8489c353cb9672c4d.svg",
     "static/media/logo-pinterest.svg": "/training-shop/static/media/logo-pinterest.999453765058229adcc060214525170e.svg",
@@ -47,12 +46,12 @@
     "static/media/arrow.svg": "/training-shop/static/media/arrow.f0d538c78f70912a72f69422dacc24b2.svg",
     "static/media/left.svg": "/training-shop/static/media/left.34f90d2018aeaaff76632eabc96a9a84.svg",
     "static/media/menu.svg": "/training-shop/static/media/menu.44db9bee8523b700cc8144da2caaed0d.svg",
-    "main.6b24405e.css.map": "/training-shop/static/css/main.6b24405e.css.map",
-    "main.fe115806.js.map": "/training-shop/static/js/main.fe115806.js.map",
+    "main.74c56dfd.css.map": "/training-shop/static/css/main.74c56dfd.css.map",
+    "main.a1bb4636.js.map": "/training-shop/static/js/main.a1bb4636.js.map",
     "787.47ca6e30.chunk.js.map": "/training-shop/static/js/787.47ca6e30.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b24405e.css",
-    "static/js/main.fe115806.js"
+    "static/css/main.74c56dfd.css",
+    "static/js/main.a1bb4636.js"
   ]
 }
