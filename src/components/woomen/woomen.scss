@@ -17,7 +17,7 @@
 }
 
 .filter__link {
-	padding-left: rem(20);
+	padding-left: rem(10);
 	font-family: 'Spartan';
 	font-style: normal;
 	font-weight: normal;
@@ -39,6 +39,7 @@
 }
 
 .clothes-filter-btn {
+	margin-right: 20px;
 	font-size: 12px;
 	opacity: 60%;
 	cursor: pointer;
@@ -64,4 +65,5 @@
  .woomen_filter__list__Cqoc8 li{
 	 display: flex;
 	 gap: rem(15);
+	 margin-right: rem(20);
  }
