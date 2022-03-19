@@ -233,12 +233,7 @@
 		overflow-x: hidden;
 		// Максимальная высота
 		max-height: 200px;
-		// Стили скроллбара
-		.simplebar-scrollbar {
-			&::before {
-				//opacity: 1;
-			}
-		}
+
 	}
 	// .select__option
 	&__option {
